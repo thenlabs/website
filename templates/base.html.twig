@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ThenLabs Website</title>
+    <title>ThenLabs</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="{{ asset('devAid/plugins/prism/prism.css') }}">
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ asset('devAid/css/theme-3.css') }}">
-    <!-- GitHub Button -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    {# <!-- GitHub Button -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script> #}
 </head>
 
 <body data-spy="scroll">
@@ -70,7 +70,7 @@
             <h2 class="title">ThenLabs<span class="highlight"></span></h2>
             <p class="intro">Nos dedicamos a crear y gestionar proyectos de software de código abierto.</p>
             <div class="btns">
-                <a class="btn btn-cta-secondary" href="#" target="_blank">Conocer más</a>
+                <a class="btn btn-cta-secondary" href="{{ path('about') }}" target="_blank">Conocer más</a>
             </div>
             <ul class="meta list-inline">
                 <li class="list-inline-item"><a href="https://github.com/thenlabs" target="_blank">Ver en GitHub</a></li>
@@ -200,7 +200,6 @@
                     <ul class="social-icons list-inline">
                         <li class="list-inline-item"><a href="https://twitter.com/3rdwave_themes" target="_blank"><i class="fab fa-twitter"></i></a></li>
                         <li class="list-inline-item"><a href="https://www.facebook.com/3rdwavethemes" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-
                         <li class="list-inline-item"><a href="https://medium.com/@3rdwave_themes/" target="_blank"><i class="fab fa-medium-m"></i></a></li>
                         <li class="list-inline-item"><a href="https://dribbble.com/Xiaoying" target="_blank"><i class="fab fa-dribbble"></i></a></li>
                         <li class="list-inline-item last"><a href="https://themes.3rdwavemedia.com/contact/" target="_blank"><i class="fas fa-envelope"></i></a></li>

@@ -12,8 +12,14 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
-        ]);
+        return $this->render('devAid/page-index.html.twig');
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about()
+    {
+        return $this->render('devAid/page-about.html.twig');
     }
 }
