@@ -1,7 +1,9 @@
 
 {% extends 'base.html.twig' %}
 
-{% set nav_items = [] %}
+{% if not nav_items is defined %}
+    {% set nav_items = [] %}
+{% endif %}
 
 {% block styles %}
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
