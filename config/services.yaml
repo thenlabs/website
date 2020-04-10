@@ -6,6 +6,8 @@
 parameters:
     twitter_username: ThenLabsOrg
     twitter_url: https://twitter.com/ThenLabsOrg
+    facebook_url: https://www.facebook.com/ThenLabs-110165223984090/
+    telegram_url: https://t.me/thenlabs
 
 services:
     # default configuration for services in *this* file

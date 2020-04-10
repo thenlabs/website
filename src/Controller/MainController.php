@@ -41,6 +41,8 @@ class MainController extends AbstractController
 
         return $this->render('devAid/page-index.html.twig', [
             'twitter_username' => $this->getParameter('twitter_username'),
+            'telegram_url' => $this->getParameter('telegram_url'),
+            'facebook_url' => $this->getParameter('facebook_url'),
             'twitter_url' => $this->getParameter('twitter_url'),
             'nav_items' => $navigation,
         ]);
