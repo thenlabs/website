@@ -12,7 +12,34 @@ class MainController extends AbstractController
      */
     public function index()
     {
-        return $this->render('devAid/page-index.html.twig');
+        return $this->render('devAid/page-index.html.twig', [
+            'nav_items' => [
+                [
+                    'li_class' => 'nav-item sr-only',
+                    'a_class'  => 'nav-link scrollto',
+                    'href'     => '#promo',
+                    'text'     => 'Inicio',
+                ],
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link scrollto',
+                    'href'     => '#projects',
+                    'text'     => 'Proyectos',
+                ],
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link scrollto',
+                    'href'     => '#socials',
+                    'text'     => 'Redes Sociales',
+                ],
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link scrollto',
+                    'href'     => '#contact',
+                    'text'     => 'Contacto',
+                ],
+            ]
+        ]);
     }
 
     /**
@@ -20,6 +47,8 @@ class MainController extends AbstractController
      */
     public function about()
     {
-        return $this->render('devAid/page-about.html.twig');
+        return $this->render('devAid/page-about.html.twig', [
+            'nav_items' => []
+        ]);
     }
 }
