@@ -40,18 +40,18 @@ class MainController extends AbstractController
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link scrollto',
                     'href'     => '#contact',
-                    'text'     => 'Contacto',
+                    'text'     => 'Contactar',
                 ],
             ],
         ]);
     }
 
     /**
-     * @Route("/about", name="about")
+     * @Route("/faq", name="faq")
      */
-    public function about()
+    public function faq()
     {
-        return $this->render('devAid/page-about.html.twig', [
+        return $this->render('devAid/page-faq.html.twig', [
             'nav_items' => []
         ]);
     }
