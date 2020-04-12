@@ -45,8 +45,8 @@ class MainController extends AbstractController
                 [
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link',
-                    'href'     => $this->generateUrl('about'),
-                    'text'     => 'FAQs',
+                    'href'     => $this->generateUrl('faq'),
+                    'text'     => 'FAQ',
                 ],
             ],
         ]);
