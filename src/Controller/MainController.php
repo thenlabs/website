@@ -42,6 +42,12 @@ class MainController extends AbstractController
                     'href'     => '#contact',
                     'text'     => 'Contactar',
                 ],
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link',
+                    'href'     => $this->generateUrl('about'),
+                    'text'     => 'FAQs',
+                ],
             ],
         ]);
     }
@@ -52,7 +58,31 @@ class MainController extends AbstractController
     public function faq()
     {
         return $this->render('devAid/page-faq.html.twig', [
-            'nav_items' => []
+            'nav_items' => [
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link',
+                    'href'     => $this->generateUrl('index'),
+                    'text'     => 'Inicio',
+                ],
+            ]
+        ]);
+    }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function about()
+    {
+        return $this->render('devAid/page-about.html.twig', [
+            'nav_items' => [
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link',
+                    'href'     => $this->generateUrl('index'),
+                    'text'     => 'Inicio',
+                ],
+            ]
         ]);
     }
 }
