@@ -122,7 +122,7 @@ class MainController extends AbstractController
             $linkText = "{$n}. {$text}";
             $h2->setInnerHtml($linkText);
 
-            $id = str_replace('.', '', $linkText);
+            $id = str_replace('.', '', 'l-'.$linkText);
             $id = str_replace(' ', '-', $id);
             $id = str_replace('á', 'a', $id);
             $id = str_replace('é', 'e', $id);
