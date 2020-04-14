@@ -89,16 +89,17 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/docs", name="docs")
+     * @Route("/docs/{project}/{branch}/{language}/{document}.html", name="docs")
      */
-    public function docs(MarkdownParserInterface $parser)
+    public function docs(string $project, string $branch, string $language, string $document, MarkdownParserInterface $parser)
     {
         $navigation = [];
 
         $parser->code_class_prefix = 'language-';
 
+        define('DOCS_DIR', __DIR__.'/../../docs');
         $content = $parser->transformMarkdown(
-            file_get_contents(__DIR__.'/../../docs/components/master/docs/es/index.md')
+            file_get_contents(DOCS_DIR."/{$project}/{$branch}/docs/{$language}/{$document}.md")
         );
 
         /**
