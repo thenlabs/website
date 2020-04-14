@@ -93,19 +93,31 @@ class MainController extends AbstractController
      */
     public function docs(MarkdownParserInterface $parser)
     {
+        $navigation = [];
+
         $parser->code_class_prefix = 'language-';
 
         $content = $parser->transformMarkdown(
             file_get_contents(__DIR__.'/../../docs/components/master/docs/es/index.md')
         );
 
-        $content = HtmlPageCrawler::create($content);
+        /**
+         * The content should be wrapped because the crawler has bug when deleting root nodes.
+         * @see https://github.com/wasinger/htmlpagedom/issues/25#issuecomment-507515271
+         */
+        $content = HtmlPageCrawler::create('<div class="docs-content">'.$content.'</div>');
+
+        $contentTitleElement = $content->filter('h1');
+        $contentTitle = $contentTitleElement->getInnerHtml();
+
+        $contentTitleElement->remove();
 
         $content->filter('pre > code:not([class])')->addClass('language-markup');
 
         return $this->render('devAid/page-docs.html.twig', [
             'navigation' => [],
             'content' => $content,
+            'contentTitle' => $contentTitle,
         ]);
     }
 }
