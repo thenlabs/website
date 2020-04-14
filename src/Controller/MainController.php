@@ -5,6 +5,7 @@ namespace App\Controller;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 class MainController extends AbstractController
@@ -98,9 +99,13 @@ class MainController extends AbstractController
         $parser->code_class_prefix = 'language-';
 
         define('DOCS_DIR', __DIR__.'/../../docs');
-        $content = $parser->transformMarkdown(
-            file_get_contents(DOCS_DIR."/{$project}/{$branch}/docs/{$language}/{$document}.md")
-        );
+
+        $filename = DOCS_DIR."/{$project}/{$branch}/docs/{$language}/{$document}.md";
+        if (! file_exists($filename)) {
+            throw new NotFoundHttpException;
+        }
+
+        $content = $parser->transformMarkdown(file_get_contents($filename));
 
         /**
          * The content should be wrapped because the crawler has bug when deleting root nodes.
