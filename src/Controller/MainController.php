@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 class MainController extends AbstractController
 {
@@ -17,7 +19,7 @@ class MainController extends AbstractController
             'telegram_url' => $this->getParameter('telegram_url'),
             'facebook_url' => $this->getParameter('facebook_url'),
             'twitter_url' => $this->getParameter('twitter_url'),
-            'nav_items' => [
+            'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',
                     'a_class'  => 'nav-link scrollto',
@@ -58,7 +60,7 @@ class MainController extends AbstractController
     public function faq()
     {
         return $this->render('devAid/page-faq.html.twig', [
-            'nav_items' => [
+            'navigation' => [
                 [
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link',
@@ -75,7 +77,7 @@ class MainController extends AbstractController
     public function about()
     {
         return $this->render('devAid/page-about.html.twig', [
-            'nav_items' => [
+            'navigation' => [
                 [
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link',
@@ -83,6 +85,27 @@ class MainController extends AbstractController
                     'text'     => 'Inicio',
                 ],
             ]
+        ]);
+    }
+
+    /**
+     * @Route("/docs", name="docs")
+     */
+    public function docs(MarkdownParserInterface $parser)
+    {
+        $parser->code_class_prefix = 'language-';
+
+        $content = $parser->transformMarkdown(
+            file_get_contents(__DIR__.'/../../docs/components/master/docs/es/index.md')
+        );
+
+        $content = HtmlPageCrawler::create($content);
+
+        $content->filter('pre > code:not([class])')->addClass('language-markup');
+
+        return $this->render('devAid/page-docs.html.twig', [
+            'navigation' => [],
+            'content' => $content,
         ]);
     }
 }

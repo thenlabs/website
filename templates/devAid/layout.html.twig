@@ -34,7 +34,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        {% for item in nav_items %}
+                        {% for item in navigation %}
                             <li class="{{ item.li_class }}"><a class="{{ item.a_class }}" href="{{ item.href }}">{{ item.text }}</a></li>
                         {% endfor %}
                     </ul><!--//nav-->
