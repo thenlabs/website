@@ -5,16 +5,44 @@
     {{ parent() }}
     <style type="text/css">
         h2, h3, h4, h5, h6 { margin: 40px 0 25px 0; }
+
+        .wrapper-content {
+            background: #fff;
+            border-radius: 4px;
+        }
+
+        .section-menu {
+            padding: 20px 5px 20px 15px;
+        }
+
+        .docs-content {
+            padding: 30px;
+            background-clip: padding-box;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
     <section id="docs" class="docs section">
         <div class="container">
-            <div class="docs-inner">
-                <h2 class="title text-center">{{ contentTitle }}</h2>
-                {{ content|raw }}
-            </div><!--//docs-inner-->
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="wrapper-content section-menu">
+                        <ul class="list-unstyled">
+                            {% for item in menu %}
+                                <li><a class="scrollto" href="#{{ item.id }}">{{ item.text }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="wrapper-content docs-content">
+                        <h2 class="title text-center">{{ contentTitle }}</h2>
+                        {{ content|raw }}
+                    </div><!--//docs-content-->
+                </div>
+            </div>
         </div><!--//container-->
     </section>
 {% endblock %}

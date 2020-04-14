@@ -114,10 +114,32 @@ class MainController extends AbstractController
 
         $content->filter('pre > code:not([class])')->addClass('language-markup');
 
+        $menu = [];
+        $content->filter('h2')->each(function ($h2, $i) use (&$menu) {
+            $text = $h2->getInnerHtml();
+            $n = $i + 1;
+
+            $linkText = "{$n}. {$text}";
+            $h2->setInnerHtml($linkText);
+
+            $id = str_replace('.', '', $linkText);
+            $id = str_replace(' ', '-', $id);
+            $id = str_replace('á', 'a', $id);
+            $id = str_replace('é', 'e', $id);
+            $id = str_replace('í', 'i', $id);
+            $id = str_replace('ó', 'o', $id);
+            $id = str_replace('ú', 'u', $id);
+            $id = strtolower($id);
+            $h2->setAttribute('id', $id);
+
+            $menu[] = ['id' => $id, 'text' => $linkText];
+        });
+
         return $this->render('devAid/page-docs.html.twig', [
             'navigation' => [],
             'content' => $content,
             'contentTitle' => $contentTitle,
+            'menu' => $menu,
         ]);
     }
 }
