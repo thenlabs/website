@@ -97,11 +97,6 @@ class MainController extends AbstractController
     {
         $filename = __DIR__."/../../docs/{$project}/{$branch}/{$resource}";
 
-        $pathInfo = pathInfo($filename);
-        if ($pathInfo['extension'] == 'html') {
-            $filename = $pathInfo['dirname'].$pathInfo['filename'].'.md';
-        }
-
         if (! file_exists($filename)) {
             throw new NotFoundHttpException;
         }
@@ -109,10 +104,6 @@ class MainController extends AbstractController
         $pathInfo = pathInfo($filename);
         if ($pathInfo['extension'] == 'md') {
             $parser->code_class_prefix = 'language-';
-            $parser->url_filter_func = function ($url) {
-                dump($url);
-                return $url;
-            };
 
             $content = $parser->transformMarkdown(file_get_contents($filename));
 
