@@ -119,6 +119,7 @@ class MainController extends AbstractController
             $contentTitleElement->remove();
 
             $content->filter('pre > code:not([class])')->addClass('language-markup');
+            $content->filter('img:not([class])')->addClass('img-fluid');
 
             $menu = [];
             $content->filter('h2')->each(function ($h2, $i) use (&$menu) {
