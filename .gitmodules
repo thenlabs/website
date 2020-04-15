@@ -1,0 +1,9 @@
+[submodule "docs/components/master"]
+	path = docs/components/master
+	url = https://github.com/thenlabs/components.git
+[submodule "docs/class-builder/master"]
+	path = docs/class-builder/master
+	url = https://github.com/thenlabs/class-builder.git
+[submodule "docs/cli/master"]
+	path = docs/cli/master
+	url = https://github.com/thenlabs/cli.git
