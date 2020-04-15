@@ -7,3 +7,9 @@
 [submodule "docs/cli/master"]
 	path = docs/cli/master
 	url = https://github.com/thenlabs/cli.git
+[submodule "docs/composed-views/master"]
+	path = docs/composed-views/master
+	url = https://github.com/thenlabs/composed-views.git
+[submodule "docs/pyramidal-tests/master"]
+	path = docs/pyramidal-tests/master
+	url = https://github.com/andaniel05/PyramidalTests.git
