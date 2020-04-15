@@ -97,6 +97,13 @@ class MainController extends AbstractController
         $navigation = [];
 
         $parser->code_class_prefix = 'language-';
+        $parser->url_filter_func = function ($url) {
+            if (preg_match('/\.md$/', $url)) {
+                $url = str_replace('.md', '.html', $url);
+            }
+
+            return $url;
+        };
 
         define('DOCS_DIR', __DIR__.'/../../docs');
 
@@ -135,13 +142,17 @@ class MainController extends AbstractController
             $id = str_replace('í', 'i', $id);
             $id = str_replace('ó', 'o', $id);
             $id = str_replace('ú', 'u', $id);
+            $id = str_replace('Í', 'I', $id);
             $id = strtolower($id);
             $h2->setAttribute('id', $id);
 
             $menu[] = ['id' => $id, 'text' => $linkText];
         });
 
-        $template = empty($menu) ? 'devAid/page-docs-without-menu.html.twig' : 'devAid/page-docs.html.twig';
+        $template = empty($menu) ?
+            'devAid/page-docs-without-menu.html.twig' :
+            'devAid/page-docs.html.twig'
+        ;
 
         return $this->render($template, [
             'navigation' => [],
