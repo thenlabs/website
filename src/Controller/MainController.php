@@ -141,7 +141,9 @@ class MainController extends AbstractController
             $menu[] = ['id' => $id, 'text' => $linkText];
         });
 
-        return $this->render('devAid/page-docs.html.twig', [
+        $template = empty($menu) ? 'devAid/page-docs-without-menu.html.twig' : 'devAid/page-docs.html.twig';
+
+        return $this->render($template, [
             'navigation' => [],
             'content' => $content,
             'contentTitle' => $contentTitle,
