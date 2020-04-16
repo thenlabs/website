@@ -156,10 +156,17 @@ class MainController extends AbstractController
             ;
 
             return $this->render($template, [
-                'navigation' => [],
                 'content' => $content,
                 'contentTitle' => $contentTitle,
                 'menu' => $menu,
+                'navigation' => [
+                    [
+                        'li_class' => 'nav-item',
+                        'a_class'  => 'nav-link',
+                        'href'     => $this->generateUrl('index'),
+                        'text'     => 'Inicio',
+                    ],
+                ],
             ]);
         } else {
             return new BinaryFileResponse($filename);
