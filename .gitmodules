@@ -10,3 +10,6 @@
 [submodule "docs/composed-views/master"]
 	path = docs/composed-views/master
 	url = https://github.com/thenlabs/composed-views.git
+[submodule "docs/pyramidal-tests/master"]
+	path = docs/pyramidal-tests/master
+	url = https://github.com/thenlabs/pyramidal-tests.git
