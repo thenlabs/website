@@ -91,19 +91,26 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/docs/{project}/{branch}/{resource}", name="docs", requirements={"resource"=".+"})
+     * @Route("/docs/{project}/{branch}/{language}/{resource}.{extension}", name="docs", requirements={"resource"=".+"})
      */
-    public function docs(string $project, string $branch, string $resource, MarkdownParserInterface $parser)
+    public function docs(string $project, string $branch, string $language, string $resource, string $extension, MarkdownParserInterface $parser)
     {
-        $filename = __DIR__."/../../docs/{$project}/{$branch}/{$resource}";
+        if ($extension == 'html') {
+            $extension = 'md';
+        }
+
+        $filename = __DIR__."/../../docs/{$project}/{$branch}/docs/{$language}/{$resource}.{$extension}";
 
         if (! file_exists($filename)) {
             throw new NotFoundHttpException;
         }
 
-        $pathInfo = pathInfo($filename);
-        if ($pathInfo['extension'] == 'md') {
+        $fileInfo = pathInfo($filename);
+        if ($fileInfo['extension'] == 'md') {
             $parser->code_class_prefix = 'language-';
+            $parser->url_filter_func = function ($url) {
+                return preg_replace('/\.md$/', '.html', $url);
+            };
 
             $content = $parser->transformMarkdown(file_get_contents($filename));
 
