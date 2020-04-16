@@ -46,12 +46,12 @@ class MainController extends AbstractController
                     'href'     => '#contact',
                     'text'     => 'Contactar',
                 ],
-                [
-                    'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link',
-                    'href'     => $this->generateUrl('faq'),
-                    'text'     => 'FAQ',
-                ],
+                // [
+                //     'li_class' => 'nav-item',
+                //     'a_class'  => 'nav-link',
+                //     'href'     => $this->generateUrl('faq'),
+                //     'text'     => 'FAQ',
+                // ],
             ],
         ]);
     }
