@@ -158,6 +158,7 @@ class MainController extends AbstractController
             return $this->render($template, [
                 'content' => $content,
                 'contentTitle' => $contentTitle,
+                'pageTitle' => $contentTitle,
                 'menu' => $menu,
                 'navigation' => [
                     [
