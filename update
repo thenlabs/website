@@ -2,4 +2,3 @@
 composer install -vvv
 git submodule update --init --recursive
 git submodule update --recursive --remote
-php bin/console cache:clear
