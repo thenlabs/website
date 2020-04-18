@@ -22,5 +22,10 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
         yield ['/'];
         yield ['/about'];
         yield ['/faq'];
+        yield ['/docs/pyramidal-tests/master/es/index.html'];
+        yield ['/docs/components/master/es/index.html'];
+        yield ['/docs/class-builder/master/es/index.html'];
+        yield ['/docs/cli/master/es/index.html'];
+        yield ['/docs/composed-views/master/es/index.html'];
     }
 }
