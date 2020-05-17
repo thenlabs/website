@@ -4,7 +4,7 @@
 {% block styles %}
     {{ parent() }}
     <style type="text/css">
-        h2, h3, h4, h5, h6 { margin: 40px 0 25px 0; }
+        h2, h3, h4, h5, h6 { margin: 40px 0 5px 0; }
 
         .wrapper-content {
             background: #fff;
@@ -16,8 +16,16 @@
         }
 
         .docs-content {
-            padding: 30px;
+            padding: 5px;
             background-clip: padding-box;
+        }
+
+        @media (min-width: 576px) {
+            h2, h3, h4, h5, h6 { margin: 40px 0 25px 0; }
+
+            .docs-content {
+                padding: 30px;
+            }
         }
     </style>
 {% endblock %}
