@@ -63,9 +63,15 @@ class Category
      */
     private $children;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\BlogPost", mappedBy="categories")
+     */
+    private $blogPosts;
+
     public function __construct()
     {
         $this->children = new ArrayCollection();
+        $this->blogPosts = new ArrayCollection();
     }
 
     public function getId()
@@ -175,5 +181,33 @@ class Category
     public function __toString()
     {
         return $this->name;
+    }
+
+    /**
+     * @return Collection|BlogPost[]
+     */
+    public function getBlogPosts(): Collection
+    {
+        return $this->blogPosts;
+    }
+
+    public function addBlogPost(BlogPost $blogPost): self
+    {
+        if (!$this->blogPosts->contains($blogPost)) {
+            $this->blogPosts[] = $blogPost;
+            $blogPost->addCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBlogPost(BlogPost $blogPost): self
+    {
+        if ($this->blogPosts->contains($blogPost)) {
+            $this->blogPosts->removeElement($blogPost);
+            $blogPost->removeCategory($this);
+        }
+
+        return $this;
     }
 }
