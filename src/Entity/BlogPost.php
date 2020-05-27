@@ -9,6 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class BlogPost
 {
+    use TimestampableTrait;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
