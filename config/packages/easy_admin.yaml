@@ -3,7 +3,12 @@ easy_admin:
         Category:
             class: App\Entity\Category
             form:
-                title: 'Add customer'
                 fields:
                     - name
                     - parent
+
+        Tag:
+            class: App\Entity\Tag
+            form:
+                fields:
+                    - name
