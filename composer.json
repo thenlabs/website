@@ -33,6 +33,7 @@
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
         "symfony/yaml": "5.0.*",
+        "vich/uploader-bundle": "^1.13",
         "wa72/htmlpagedom": "^2.0"
     },
     "require-dev": {
