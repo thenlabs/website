@@ -10,7 +10,8 @@ easy_admin:
             form:
                 fields:
                     - title
-                    - { property: 'content', type: 'fos_ckeditor' }
+                    - published
+                    - { property: 'content', type: 'code_editor', language: 'markdown' }
                     - categories
                     - tags
 
