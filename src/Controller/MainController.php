@@ -173,4 +173,21 @@ class MainController extends AbstractController
             return new BinaryFileResponse($filename);
         }
     }
+
+    /**
+     * @Route("/blog", name="blog")
+     */
+    public function blog()
+    {
+        return $this->render('devAid/page-blog.html.twig', [
+            'navigation' => [
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link',
+                    'href'     => $this->generateUrl('index'),
+                    'text'     => 'Inicio',
+                ],
+            ]
+        ]);
+    }
 }

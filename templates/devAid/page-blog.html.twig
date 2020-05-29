@@ -1,0 +1,34 @@
+
+{% extends 'devAid/layout-sidebar.html.twig' %}
+
+{% block right_sidebar %}
+    <div class="docs-inner">
+        <h2 class="title text-center" style="margin-bottom: 50px">Blog</h2>
+
+        {# {% for post in posts %}
+            <div class="block">
+                <h4 class="sub-title">{{ post.title }}</h4>
+                {{ post.abstract }}
+                <p>ThenLabs se puede definir como una Startup del sector de la informática dedicada a crear y gestionar proyectos de software de código abierto. <a href="#">Seguir leyendo</a></p>
+            </div><!--//block-->
+        {% endfor %} #}
+
+
+        <div class="block">
+            <h4 class="sub-title">2. ¿Por qué una Startup?</h4>
+            <p>Nos definimos como una Startup dado que somos un emprendimiento que recién comienza y que pensamos escalarlo de diferentes maneras a medida que se vayan alcanzando una serie de objetivos.</p>
+            <a href="#">Seguir leyendo</a>
+        </div><!--//block-->
+
+        <div class="block">
+            <h4 class="sub-title">3. ¿Qué tipo de proyectos realizan?</h4>
+            <p>Mayormente nos dedicamos a crear proyectos base que serán usados por otros programadores a la hora de crear sus propios proyectos. Dicho de otra manera, hacemos herramientas para programadores.</p>
+            <p>Aunque no estamos encasillados en determinadas áreas en específico, todos los proyectos que hemos desarrollado hasta el momento están relacionados con el desarrollo web con PHP. Muchos de los venideros también estarán relacionados con esta área.</p>
+        </div><!--//block-->
+
+        <div class="block">
+            <h4 class="sub-title">4. ¿Qué proyectos tienen realizados?</h4>
+            <p>En la página principal existe una sección que muestra <a href="{{ path('index') }}#projects">nuestros proyectos realizados</a>. En la misma podrán notar que se indica que algunos fueron desarrollados antes de nuestra existencia. Dado que consideramos que los mismos tienen determinada utilidad serán retomados por nosotros ya que en algunos casos han sido abandonados.</p>
+        </div><!--//block-->
+    </div><!--//docs-inner-->
+{% endblock %}
