@@ -2,7 +2,6 @@ easy_admin:
     design:
         form_theme:
             - '@EasyAdmin/form/bootstrap_4.html.twig'
-            - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 
     entities:
         BlogPost:
@@ -10,10 +9,24 @@ easy_admin:
             form:
                 fields:
                     - title
-                    - published
+                    - public
                     - { property: 'content', type: 'code_editor', language: 'markdown' }
                     - categories
                     - tags
+
+        Image:
+            class: App\Entity\Image
+            list:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.admin_images%' }
+
+            show:
+                fields:
+                    - { property: 'image', type: 'image', base_path: '%app.path.admin_images%' }
+
+            form:
+                fields:
+                    - { property: 'imageFile', type: 'vich_image' }
 
         Category:
             class: App\Entity\Category

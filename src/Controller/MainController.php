@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use App\Entity\BlogPost;
 
 class MainController extends AbstractController
 {
@@ -21,6 +23,7 @@ class MainController extends AbstractController
             'telegram_url' => $this->getParameter('telegram_url'),
             'facebook_url' => $this->getParameter('facebook_url'),
             'twitter_url' => $this->getParameter('twitter_url'),
+            'meta_description' => 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.',
             'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',
@@ -159,6 +162,7 @@ class MainController extends AbstractController
                 'content' => $content,
                 'contentTitle' => $contentTitle,
                 'pageTitle' => $contentTitle,
+                'meta_description' => "{$contentTitle} | ThenLabs",
                 'menu' => $menu,
                 'navigation' => [
                     [
@@ -188,6 +192,38 @@ class MainController extends AbstractController
                     'text'     => 'Inicio',
                 ],
             ]
+        ]);
+    }
+
+    /**
+     * @Route("/blog/{id}", name="blogPost")
+     * @ParamConverter("post", class="App\Entity\BlogPost")
+     */
+    public function blogPost(BlogPost $post, MarkdownParserInterface $parser)
+    {
+        $parser->code_class_prefix = 'language-';
+
+        $content = $parser->transformMarkdown($post->getContent());
+        $content = HtmlPageCrawler::create('<div class="docs-content">'.$content.'</div>');
+        $content->filter('pre > code:not([class])')->addClass('language-markup');
+        $content->filter('img:not([class])')->addClass('img-fluid');
+
+        $title = $post->getTitle();
+
+        return $this->render('devAid/page-docs.html.twig', [
+            'content' => $content,
+            'contentTitle' => $title,
+            'pageTitle' => $title,
+            'meta_description' => "{$title} | ThenLabs",
+            'menu' => [],
+            'navigation' => [
+                [
+                    'li_class' => 'nav-item',
+                    'a_class'  => 'nav-link',
+                    'href'     => $this->generateUrl('index'),
+                    'text'     => 'Inicio',
+                ],
+            ],
         ]);
     }
 }

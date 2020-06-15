@@ -31,22 +31,24 @@
 {% endblock %}
 
 {% block left_sidebar %}
-    <div class="row">
-        <div class="col">
-            <div class="wrapper-content section-menu">
-                <ul class="list-unstyled">
-                    {% for item in menu %}
-                        <li><a class="scrollto" href="#{{ item.id }}">{{ item.text }}</a></li>
-                    {% endfor %}
-                </ul>
+    {% if not menu is empty %}
+        <div class="row">
+            <div class="col">
+                <div class="wrapper-content section-menu">
+                    <ul class="list-unstyled">
+                        {% for item in menu %}
+                            <li><a class="scrollto" href="#{{ item.id }}">{{ item.text }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
 {% endblock %}
 
 {% block right_sidebar %}
     <div class="wrapper-content docs-content">
-        <h2 class="title text-center">{{ contentTitle }}</h2>
+        <h1 class="title text-center">{{ contentTitle }}</h1>
         {{ content|raw }}
     </div><!--//docs-content-->
 {% endblock %}

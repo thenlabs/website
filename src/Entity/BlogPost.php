@@ -48,7 +48,7 @@ class BlogPost
     /**
      * @ORM\Column(type="boolean")
      */
-    private $published;
+    private $public;
 
     public function __construct()
     {
@@ -149,14 +149,14 @@ class BlogPost
         return $this;
     }
 
-    public function getPublished(): ?bool
+    public function isPublic(): ?bool
     {
-        return $this->published;
+        return $this->public;
     }
 
-    public function setPublished(bool $published): self
+    public function setPublic(bool $public): self
     {
-        $this->published = $published;
+        $this->public = $public;
 
         return $this;
     }
