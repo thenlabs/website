@@ -41,3 +41,6 @@ easy_admin:
             form:
                 fields:
                     - name
+
+        User:
+            class: App\Entity\User
