@@ -9,6 +9,7 @@ easy_admin:
             form:
                 fields:
                     - title
+                    - slug
                     - public
                     - { property: 'content', type: 'code_editor', language: 'markdown' }
                     - categories
