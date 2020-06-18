@@ -4,7 +4,29 @@
     {% else %}
         {% set title = 'ThenLabs' %}
     {% endif %}
-{% endif %}<!DOCTYPE html>
+{% endif %}
+
+{% if not ogUrl is defined %}
+    {% set ogUrl = (app.request.schemeAndHttpHost ~ app.request.requestUri) %}
+{% endif %}
+
+{% if not ogType is defined %}
+    {% set ogType = 'blog' %}
+{% endif %}
+
+{% if not ogTitle is defined %}
+    {% set ogTitle = title %}
+{% endif %}
+
+{% if not ogDescription is defined %}
+    {% set ogDescription = title %}
+{% endif %}
+
+{% if not ogImage is defined %}
+    {% set ogImage = asset('preview.png') %}
+{% endif %}
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <title>{{ title }}</title>
@@ -14,7 +36,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ meta_description }}">
     <meta name="author" content="ThenLabs">
-    <meta property="og:image" content="{{ asset('preview.png') }}">
+    <meta property="og:site_name" content="ThenLabs">
+    <meta property="og:url" content="{{ ogUrl }}">
+    <meta property="og:type" content="{{ ogType }}">
+    <meta property="og:title" content="{{ ogTitle }}">
+    <meta property="og:image" content="{{ ogImage }}">
+    <meta property="og:description" content="{{ ogDescription }}">
     {# <link rel="shortcut icon" href="favicon.ico"> #}
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163364401-1"></script>
