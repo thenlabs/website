@@ -30,6 +30,11 @@
     </style>
 {% endblock %}
 
+{% block before_body %}
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v7.0&appId=1376605832728926&autoLogAppEvents=1" nonce="tVaW2yKx"></script>
+{% endblock %}
+
 {% block left_sidebar %}
     {% if not menu is empty %}
         <div class="row">
@@ -50,5 +55,12 @@
     <div class="wrapper-content docs-content">
         <h1 class="title text-center">{{ contentTitle }}</h1>
         {{ content|raw }}
+
+        <div class="row">
+            <div class="col">
+                <div class="fb-comments" data-href="{{ app.request.schemeAndHttpHost ~ app.request.requestUri }}" data-numposts="5" data-width=""></div>
+            </div>
+        </div>
+
     </div><!--//docs-content-->
 {% endblock %}
