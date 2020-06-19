@@ -19,7 +19,6 @@ class MainController extends AbstractController
     public function index()
     {
         return $this->render('devAid/page-index.html.twig', [
-            'meta_description' => 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.',
             'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',
@@ -60,9 +59,7 @@ class MainController extends AbstractController
      */
     public function faq()
     {
-        return $this->render('devAid/page-faq.html.twig', [
-            'meta_description' => 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.',
-        ]);
+        return $this->render('devAid/page-faq.html.twig');
     }
 
     /**
@@ -70,9 +67,7 @@ class MainController extends AbstractController
      */
     public function about()
     {
-        return $this->render('devAid/page-about.html.twig', [
-            'meta_description' => 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.',
-        ]);
+        return $this->render('devAid/page-about.html.twig');
     }
 
     /**

@@ -6,6 +6,10 @@
     {% endif %}
 {% endif %}
 
+{% if not meta_description is defined %}
+    {% set meta_description = 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.' %}
+{% endif %}
+
 {% if not ogUrl is defined %}
     {% set ogUrl = (app.request.schemeAndHttpHost ~ app.request.requestUri) %}
 {% endif %}
