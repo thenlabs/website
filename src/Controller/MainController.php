@@ -123,14 +123,6 @@ class MainController extends AbstractController
         }
     }
 
-    // /**
-    //  * @Route("/blog", name="blog")
-    //  */
-    // public function blog()
-    // {
-    //     return $this->render('devAid/page-blog.html.twig');
-    // }
-
     /**
      * @Route("/blog/{slug}.html", name="blogPost")
      * @ParamConverter("post", class="App\Entity\BlogPost")

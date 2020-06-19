@@ -3,3 +3,5 @@ composer install -vvv
 git submodule update --init --recursive
 git submodule update --recursive --remote
 ./bin/phpunit
+APP_ENV=dev php bin/console make:migration
+APP_ENV=dev php bin/console doctrine:migrations:migrate
