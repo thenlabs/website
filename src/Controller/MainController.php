@@ -123,16 +123,16 @@ class MainController extends AbstractController
         }
     }
 
-    /**
-     * @Route("/blog", name="blog")
-     */
-    public function blog()
-    {
-        return $this->render('devAid/page-blog.html.twig');
-    }
+    // /**
+    //  * @Route("/blog", name="blog")
+    //  */
+    // public function blog()
+    // {
+    //     return $this->render('devAid/page-blog.html.twig');
+    // }
 
     /**
-     * @Route("/blog/{slug}", name="blogPost")
+     * @Route("/blog/{slug}.html", name="blogPost")
      * @ParamConverter("post", class="App\Entity\BlogPost")
      */
     public function blogPost(BlogPost $post, MarkdownParserInterface $parser)
@@ -141,7 +141,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/page/{slug}", name="page")
+     * @Route("/page/{slug}.html", name="page")
      * @ParamConverter("page", class="App\Entity\Page")
      */
     public function page(Page $page, MarkdownParserInterface $parser)
