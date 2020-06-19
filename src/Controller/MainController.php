@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\BlogPost;
+use App\Entity\Page;
 
 class MainController extends AbstractController
 {
@@ -52,22 +53,6 @@ class MainController extends AbstractController
                 // ],
             ],
         ]);
-    }
-
-    /**
-     * @Route("/faq", name="faq")
-     */
-    public function faq()
-    {
-        return $this->render('devAid/page-faq.html.twig');
-    }
-
-    /**
-     * @Route("/about", name="about")
-     */
-    public function about()
-    {
-        return $this->render('devAid/page-about.html.twig');
     }
 
     /**
@@ -161,14 +146,28 @@ class MainController extends AbstractController
      */
     public function blogPost(BlogPost $post, MarkdownParserInterface $parser)
     {
+        return $this->getResponseForMarkdownContent($post, $parser);
+    }
+
+    /**
+     * @Route("/page/{slug}", name="page")
+     * @ParamConverter("page", class="App\Entity\Page")
+     */
+    public function page(Page $page, MarkdownParserInterface $parser)
+    {
+        return $this->getResponseForMarkdownContent($page, $parser);
+    }
+
+    public function getResponseForMarkdownContent($entity, MarkdownParserInterface $parser)
+    {
         $parser->code_class_prefix = 'language-';
 
-        $content = $parser->transformMarkdown($post->getContent());
+        $content = $parser->transformMarkdown($entity->getContent());
         $content = HtmlPageCrawler::create('<div class="docs-content">'.$content.'</div>');
         $content->filter('pre > code:not([class])')->addClass('language-markup');
         $content->filter('img:not([class])')->addClass('img-fluid');
 
-        $title = $post->getTitle();
+        $title = $entity->getTitle();
 
         return $this->render('devAid/page-docs.html.twig', [
             'content' => $content,

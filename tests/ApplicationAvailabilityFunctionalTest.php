@@ -22,8 +22,8 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     public function urlProvider()
     {
         yield ['/'];
-        yield ['/about'];
-        yield ['/faq'];
+        yield ['/page/about'];
+        // yield ['/page/faq'];
         yield ['/docs/pyramidal-tests/master/es/index.html'];
         yield ['/docs/components/master/es/index.html'];
         yield ['/docs/class-builder/master/es/index.html'];
