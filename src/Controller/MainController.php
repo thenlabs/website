@@ -45,12 +45,6 @@ class MainController extends AbstractController
                     'href'     => '#contact',
                     'text'     => 'Contactar',
                 ],
-                // [
-                //     'li_class' => 'nav-item',
-                //     'a_class'  => 'nav-link',
-                //     'href'     => $this->generateUrl('faq'),
-                //     'text'     => 'FAQ',
-                // ],
             ],
         ]);
     }
@@ -115,10 +109,12 @@ class MainController extends AbstractController
                 $menu[] = ['id' => $id, 'text' => $linkText];
             });
 
-            $template = empty($menu) ?
-                'devAid/page-docs-without-menu.html.twig' :
-                'devAid/page-docs.html.twig'
-            ;
+            // $template = empty($menu) ?
+            //     'devAid/page-docs-without-menu.html.twig' :
+            //     'devAid/page-docs.html.twig'
+            // ;
+
+            $template = 'devAid/page-docs.html.twig';
 
             return $this->render($template, [
                 'content' => $content,
@@ -169,12 +165,34 @@ class MainController extends AbstractController
 
         $title = $entity->getTitle();
 
+        $menu = [];
+        $content->filter('h2')->each(function ($h2, $i) use (&$menu) {
+            $text = $h2->getInnerHtml();
+            $n = $i + 1;
+
+            $linkText = "{$n}. {$text}";
+            $h2->setInnerHtml($linkText);
+
+            $id = str_replace('.', '', 'l-'.$linkText);
+            $id = str_replace(' ', '-', $id);
+            $id = str_replace('á', 'a', $id);
+            $id = str_replace('é', 'e', $id);
+            $id = str_replace('í', 'i', $id);
+            $id = str_replace('ó', 'o', $id);
+            $id = str_replace('ú', 'u', $id);
+            $id = str_replace('Í', 'I', $id);
+            $id = strtolower($id);
+            $h2->setAttribute('id', $id);
+
+            $menu[] = ['id' => $id, 'text' => $linkText];
+        });
+
         return $this->render('devAid/page-docs.html.twig', [
             'content' => $content,
             'contentTitle' => $title,
             'pageTitle' => $title,
             'meta_description' => "{$title} | ThenLabs",
-            'menu' => [],
+            'menu' => $menu,
         ]);
     }
 }
