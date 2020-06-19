@@ -12,7 +12,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class BlogPost
 {
-    use TimestampableTrait;
+    use Common\TimestampableTrait;
+    use Common\SlugTrait;
 
     /**
      * @ORM\Id()
@@ -50,12 +51,6 @@ class BlogPost
      * @ORM\Column(type="boolean")
      */
     private $public;
-
-    /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
 
     public function __construct()
     {
@@ -164,18 +159,6 @@ class BlogPost
     public function setPublic(bool $public): self
     {
         $this->public = $public;
-
-        return $this;
-    }
-
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
 
         return $this;
     }

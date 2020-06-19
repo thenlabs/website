@@ -62,14 +62,6 @@ class MainController extends AbstractController
     {
         return $this->render('devAid/page-faq.html.twig', [
             'meta_description' => 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.',
-            'navigation' => [
-                [
-                    'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link',
-                    'href'     => $this->generateUrl('index'),
-                    'text'     => 'Inicio',
-                ],
-            ]
         ]);
     }
 
@@ -80,14 +72,6 @@ class MainController extends AbstractController
     {
         return $this->render('devAid/page-about.html.twig', [
             'meta_description' => 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.',
-            'navigation' => [
-                [
-                    'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link',
-                    'href'     => $this->generateUrl('index'),
-                    'text'     => 'Inicio',
-                ],
-            ]
         ]);
     }
 
@@ -162,14 +146,6 @@ class MainController extends AbstractController
                 'pageTitle' => $contentTitle,
                 'meta_description' => "{$contentTitle} | ThenLabs",
                 'menu' => $menu,
-                'navigation' => [
-                    [
-                        'li_class' => 'nav-item',
-                        'a_class'  => 'nav-link',
-                        'href'     => $this->generateUrl('index'),
-                        'text'     => 'Inicio',
-                    ],
-                ],
             ]);
         } else {
             return new BinaryFileResponse($filename);
@@ -181,16 +157,7 @@ class MainController extends AbstractController
      */
     public function blog()
     {
-        return $this->render('devAid/page-blog.html.twig', [
-            'navigation' => [
-                [
-                    'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link',
-                    'href'     => $this->generateUrl('index'),
-                    'text'     => 'Inicio',
-                ],
-            ]
-        ]);
+        return $this->render('devAid/page-blog.html.twig');
     }
 
     /**
@@ -214,14 +181,6 @@ class MainController extends AbstractController
             'pageTitle' => $title,
             'meta_description' => "{$title} | ThenLabs",
             'menu' => [],
-            'navigation' => [
-                [
-                    'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link',
-                    'href'     => $this->generateUrl('index'),
-                    'text'     => 'Inicio',
-                ],
-            ],
         ]);
     }
 }

@@ -1,6 +1,17 @@
 
 {% extends 'base.html.twig' %}
 
+{% if not navigation is defined %}
+    {% set navigation = [
+        {
+            'li_class': 'nav-item',
+            'a_class' : 'nav-link',
+            'href'    : path('index'),
+            'text'    : 'Inicio',
+        }
+    ] %}
+{% endif %}
+
 {% block styles %}
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>

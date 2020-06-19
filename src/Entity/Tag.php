@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tag
 {
-    use TimestampableTrait;
+    use Common\TimestampableTrait;
 
     /**
      * @ORM\Id()

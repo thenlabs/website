@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    use TimestampableTrait;
+    use Common\TimestampableTrait;
 
     /**
      * @ORM\Id()
