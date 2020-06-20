@@ -21,7 +21,7 @@ class MainController extends AbstractController
      */
     public function index(BlogPostRepository $postRepository)
     {
-        $posts = $postRepository->findAll();
+        $posts = $postRepository->findBy(['public' => true]);
 
         return $this->render('devAid/page-index.html.twig', [
             'posts' => $posts,

@@ -4,73 +4,7 @@
 {% block styles %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('plugins/jquery-flipster/dist/jquery.flipster.min.css') }}">
-    <style type="text/css">
-        .flipster-carousel.flipster--active {
-            display: block;
-        }
-        .flip-item {
-            width: 420px;
-        }
-        .flip-item .item-inner {
-            padding: 2rem;
-            border: 1px solid #efefef;
-            background: #fff;
-        }
-        .flip-item .source-profile {
-            width: 80px;
-            height: 80px;
-        }
-        .flip-item .source-info {
-            font-size: 0.875rem;
-        }
-        .flipster--coverflow .flipster__item__content {
-            box-reflect: unset;
-            -webkit-box-reflect: unset;
-        }
-        .flipster__button {
-            width: 40px;
-            height: 40px;
-            margin-top: -3rem;
-            background: #212b35;
-            border-radius: 50%;
-        }
-        .flipster__button svg {
-            width: 0.875rem;
-            stroke: #fff;
-        }
-        .flipster__button svg:hover {
-            stroke: #fff;
-        }
-
-        @media (max-width: 575.98px) {
-            .flip-item {
-                width: 100%;
-                text-align: center;
-            }
-            .flipster__button {
-                background: none;
-                width: none;
-            }
-            .flipster__button svg {
-                stroke: #212b35;
-            }
-            .flipster__button svg:hover {
-                stroke: #212b35;
-            }
-            .source {
-                text-align: center;
-            }
-            .source .source-info {
-                width: 100%;
-            }
-            .flipster__button--prev {
-                left: -2rem;
-            }
-            .flipster__button--next {
-                right: -2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
 {% endblock %}
 
 {% block content %}
