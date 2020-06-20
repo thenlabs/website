@@ -11,15 +11,19 @@ use Wa72\HtmlPageDom\HtmlPageCrawler;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\BlogPost;
 use App\Entity\Page;
+use App\Repository\BlogPostRepository;
 
 class MainController extends AbstractController
 {
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(BlogPostRepository $postRepository)
     {
+        $posts = $postRepository->findAll();
+
         return $this->render('devAid/page-index.html.twig', [
+            'posts' => $posts,
             'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',

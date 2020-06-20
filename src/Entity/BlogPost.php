@@ -52,6 +52,11 @@ class BlogPost
      */
     private $public;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $abstract;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -159,6 +164,18 @@ class BlogPost
     public function setPublic(bool $public): self
     {
         $this->public = $public;
+
+        return $this;
+    }
+
+    public function getAbstract(): ?string
+    {
+        return $this->abstract;
+    }
+
+    public function setAbstract(string $abstract): self
+    {
+        $this->abstract = $abstract;
 
         return $this;
     }
