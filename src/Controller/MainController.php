@@ -157,6 +157,16 @@ class MainController extends AbstractController
             ''
         ;
 
+        if ($entity instanceof BlogPost) {
+            $date = date('Y-m-d');
+
+            $content->append(<<<HTML
+                <p class="text-center" style="margin-top:25px">
+                    <small><i class="far fa-clock"></i> Fecha de publicación: {$date}</small>
+                </p>
+            HTML);
+        }
+
         return $this->render('devAid/page-docs.html.twig', [
             'content' => $content,
             'contentTitle' => $title,
