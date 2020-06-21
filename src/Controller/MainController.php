@@ -158,7 +158,7 @@ class MainController extends AbstractController
         ;
 
         if ($entity instanceof BlogPost) {
-            $date = date('Y-m-d');
+            $date = $entity->getCreated()->format('Y-m-d');
 
             $content->append(<<<HTML
                 <p class="text-center" style="margin-top:25px">
