@@ -11,7 +11,7 @@ $(document).ready(function() {
         // [string|object]
         // Selector for children of `itemContainer` to flip
 
-        start: 'center',
+        start: 0,
         // ['center'|number]
         // Zero based index of the starting item, or use 'center' to start in the middle
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
         // [true|false]
         // Loop around when the start or end is reached
 
-        autoplay: 6000,
+        autoplay: false,
         // [false|milliseconds]
         // If a positive number, Flipster will automatically advance to next item after that number of milliseconds
 

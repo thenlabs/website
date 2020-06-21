@@ -19,6 +19,17 @@ class BlogPostRepository extends ServiceEntityRepository
         parent::__construct($registry, BlogPost::class);
     }
 
+    public function findPostsForCarousel(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.public = true')
+            ->orderBy('p.created', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return BlogPost[] Returns an array of BlogPost objects
     //  */

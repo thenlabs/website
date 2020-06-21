@@ -159,7 +159,9 @@
                     {% for post in posts %}
                         <div class="flip-item">
                             <div class="item-inner shadow-lg rounded">
-                                <h5 class="mb-2">{{ post.title }}</h5>
+                                <a href="{{ path('blogPost', {slug: post.slug}) }}">
+                                    <h5 class="mb-2">{{ post.title }}</h5>
+                                </a>
                                 <div class="mb-3">{{ post.abstract|markdown }}</div>
                                 <a href="{{ path('blogPost', {slug: post.slug}) }}">Seguir leyendo</a>
                             </div><!--//item-inner-->

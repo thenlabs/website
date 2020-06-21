@@ -13,6 +13,8 @@ easy_admin:
                     - public
                     - { property: 'abstract', type: 'code_editor', language: 'markdown' }
                     - { property: 'content', type: 'code_editor', language: 'markdown' }
+                    - created
+                    - updated
                     - categories
                     - tags
 
