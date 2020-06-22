@@ -13,6 +13,7 @@ use App\Entity\BlogPost;
 use App\Entity\Page;
 use App\Repository\BlogPostRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class MainController extends AbstractController
 {
@@ -159,10 +160,12 @@ class MainController extends AbstractController
 
         if ($entity instanceof BlogPost) {
             $date = $entity->getCreated()->format('Y-m-d');
+            $url = $this->generateUrl('blogPost', ['slug' => $entity->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL);
 
             $content->append(<<<HTML
                 <p class="text-center" style="margin-top:25px">
                     <small><i class="far fa-clock"></i> Fecha de publicación: {$date}</small>
+                    <div class="fb-share-button" data-href="{$url}" data-layout="button_count"></div>
                 </p>
             HTML);
         }
