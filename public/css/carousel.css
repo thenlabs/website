@@ -1,4 +1,6 @@
-
+.flipster-carousel {
+    display: none;
+}
 .flipster-carousel.flipster--active {
     display: block;
 }
