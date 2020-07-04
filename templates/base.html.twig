@@ -30,8 +30,11 @@
     {% set ogImage = absolute_url(asset('preview.png')) %}
 {% endif %}
 
+{% set route_name = app.request.attributes.get('_route') %}
+{% set route_parameters = app.request.attributes.get('_route_params') %}
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ route_parameters._locale }}">
 <head>
     <title>{{ title }}</title>
     <!-- Meta -->
