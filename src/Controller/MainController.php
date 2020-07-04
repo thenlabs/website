@@ -16,6 +16,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * @Route(
+ *     "/{_locale}",
+ *     requirements={
+ *         "_locale": "en|es",
+ *     }
+ * )
+ */
 class MainController extends AbstractController
 {
     /**

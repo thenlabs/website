@@ -41,6 +41,9 @@
     'es': '<span class="flag-icon flag-icon-es"> </span> Español',
 } %}
 
+{% set route_name = app.request.attributes.get('_route') %}
+{% set route_parameters = app.request.attributes.get('_route_params') %}
+
 {% block styles %}
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -80,10 +83,12 @@
                         {% endfor %}
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="javascript:;" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-us"> </span> English</a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                            <a class="nav-link dropdown-toggle" href="javascript:;" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ lang_items[route_parameters._locale]|raw }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownLang">
                                 {% for lang, lang_item in lang_items %}
-                                    <a class="dropdown-item" href="#">{{ lang_item|raw }}</a>
+                                    <a class="dropdown-item" href="{{ path(route_name, route_parameters|merge({'_locale': lang})) }}">{{ lang_item|raw }}</a>
                                 {% endfor %}
                             </div>
                         </li>
