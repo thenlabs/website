@@ -22,15 +22,15 @@
     <section id="promo" class="promo section offset-header">
         <div class="container text-center">
             <h2 class="title">ThenLabs<span class="highlight"></span></h2>
-            <p class="intro">Nos dedicamos a crear y gestionar proyectos de software de código abierto.</p>
+            <p class="intro">{{ 'slogan'|trans }}</p>
             <div class="btns">
-                <a class="btn btn-cta-secondary" href="{{ path('page', {slug: 'about'}) }}">Conocer más</a>
+                <a class="btn btn-cta-secondary" href="{{ path('page', {slug: 'about'}) }}">{{ 'Learn more'|trans }}</a>
             </div>
             <ul class="meta list-inline">
                 <li class="list-inline-item">
                     <a href="https://github.com/thenlabs" target="_blank">
                         <i class="fab fa-github"></i>
-                        Ver en GitHub
+                        {{ 'View on GitHub'|trans }}
                     </a>
                 </li>
             </ul><!--//meta-->
@@ -39,11 +39,11 @@
             <div class="social-media-inner container text-center">
                 <ul class="list-inline mb-2">
                     <li class="list-inline-item twitter-follow">
-                        <a href="{{ twitter_url }}" class="twitter-follow-button" data-show-count="false">Seguir a @{{ twitter_username }}</a>
+                        <a href="{{ twitter_url }}" class="twitter-follow-button" data-show-count="false">{{ 'Follow @{twitter_username}'|trans({ 'twitter_username': twitter_username }) }}</a>
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                     </li><!--//twitter-follow-->
                     <li class="list-inline-item twitter-tweet">
-                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ twitter_username }}" data-hashtags="">Tweet</a>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="{{ twitter_username }}" data-hashtags="">{{ 'Tweet'|trans }}</a>
                         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
                     </li><!--//twitter-tweet-->
                     <li class="list-inline-item facebook-like">
@@ -57,8 +57,8 @@
     <!-- ******ABOUT****** -->
     <section id="projects" class="about section">
         <div class="container">
-            <h2 class="title text-center">Proyectos</h2>
-            <p class="intro text-center">El siguiente listado muestra los proyectos de nuestra organización. En el caso de los que contienen la etiqueta "Anterior" queremos aclarar que fueron creados antes de nuestra existencia como proyecto, no obstante en lo adelante serán de alguna manera retomados por nosotros.</p>
+            <h2 class="title text-center">{{ 'Projects'|trans }}</h2>
+            <p class="intro text-center">{{ 'section.description.projects'|trans }}</p>
             <div class="row">
                 <div class="item col-lg-4 col-md-6 col-12">
                     <div class="content">
@@ -67,9 +67,9 @@
                             <span class="badge badge-info">PHP</span>
                             <span class="badge badge-success">Framework</span>
                         </div>
-                        <p>Framework PHP para la creación de vistas reutilizables.</p>
+                        <p>{{ 'project.description.composed_views'|trans }}</p>
                         <div>
-                            <a href="{{ path('docs', { project: 'composed-views', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">Ver Proyecto</a>
+                            <a href="{{ path('docs', { project: 'composed-views', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">{{ 'View Project'|trans }}</a>
                         </div>
                     </div><!--//content-->
                 </div><!--//item-->
@@ -80,11 +80,11 @@
                         <div>
                             <span class="badge badge-info">PHP</span>
                             <span class="badge badge-success">Framework</span>
-                            <span class="badge badge-warning">Anterior</span>
+                            <span class="badge badge-warning">{{ 'Previous'|trans }}</span>
                         </div>
-                        <p>Convierte PHPUnit en un framework BDD.</p>
+                        <p>{{ 'project.description.pyramidal_tests'|trans }}</p>
                         <div>
-                            <a href="{{ path('docs', { project: 'pyramidal-tests', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">  Ver Proyecto</a>
+                            <a href="{{ path('docs', { project: 'pyramidal-tests', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">{{ 'View Project'|trans }}</a>
                         </div>
                     </div><!--//content-->
                 </div><!--//item-->
@@ -95,9 +95,9 @@
                         <div>
                             <span class="badge badge-info">PHP</span>
                         </div>
-                        <p>Paquete PHP para la creación de tipos de componentes personalizados.</p>
+                        <p>{{ 'project.description.components'|trans }}</p>
                         <div>
-                            <a href="{{ path('docs', { project: 'components', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">Ver Proyecto</a>
+                            <a href="{{ path('docs', { project: 'components', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">{{ 'View Project'|trans }}</a>
                         </div>
                     </div><!--//content-->
                 </div><!--//item-->
@@ -110,9 +110,9 @@
                         <div>
                             <span class="badge badge-info">PHP</span>
                         </div>
-                        <p>Paquete PHP para la construir clases dinámicamente.</p>
+                        <p>{{ 'project.description.class_builder'|trans }}</p>
                         <div>
-                            <a href="{{ path('docs', { project: 'class-builder', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">Ver Proyecto</a>
+                            <a href="{{ path('docs', { project: 'class-builder', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">{{ 'View Project'|trans }}</a>
                         </div>
                     </div><!--//content-->
                 </div><!--//item-->
@@ -123,9 +123,9 @@
                         <div>
                             <span class="badge badge-info">PHP</span>
                         </div>
-                        <p>Herramientas de línea de comandos para gestionar proyectos de la comunidad.</p>
+                        <p>{{ 'project.description.then_cli'|trans }}</p>
                         <div>
-                            <a href="{{ path('docs', { project: 'cli', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">Ver Proyecto</a>
+                            <a href="{{ path('docs', { project: 'cli', branch: 'master', language: 'es', resource: 'index', extension: 'html' }) }}" class="btn btn-secondary btn-sm">{{ 'View Project'|trans }}</a>
                         </div>
                     </div><!--//content-->
                 </div><!--//item-->
@@ -136,12 +136,12 @@
                         <div>
                             <span class="badge badge-info">PHP</span>
                             <span class="badge badge-success">Framework</span>
-                            <span class="badge badge-warning">Anterior</span>
-                            <span class="badge badge-danger">Abandonado</span>
+                            <span class="badge badge-warning">{{ 'Previous'|trans }}</span>
+                            <span class="badge badge-danger">{{ 'Abandoned'|trans }}</span>
                         </div>
-                        <p>Framework PHP para crear aplicaciones de una sola página (SPA).</p>
+                        <p>{{ 'project.description.glue_php'|trans }}</p>
                         <div>
-                            <a href="https://gluephp.readthedocs.io/es/latest/index.html" class="btn btn-secondary btn-sm" target="_blank">Ver Proyecto</a>
+                            <a href="https://gluephp.readthedocs.io/es/latest/index.html" class="btn btn-secondary btn-sm" target="_blank">{{ 'View Project'|trans }}</a>
                         </div>
                     </div><!--//content-->
                 </div><!--//item-->
@@ -151,7 +151,7 @@
 
     <section id="blog" class="testimonial-section py-5">
         <div class="container py-lg-5">
-            <h3 class="mb-1 mb-md-5 text-center">Últimas entradas del blog</h3>
+            <h3 class="mb-1 mb-md-5 text-center">{{ 'Lastest blog posts'|trans }}</h3>
 
             <div id="flipster-carousel" class="flipster-carousel pt-md-3">
                 <div class="flip-items pb-5">
@@ -163,7 +163,7 @@
                                     <h5 class="mb-2">{{ post.title }}</h5>
                                 </a>
                                 <div class="mb-3">{{ post.abstract|markdown }}</div>
-                                <a href="{{ path('blogPost', {slug: post.slug}) }}">Seguir leyendo</a>
+                                <a href="{{ path('blogPost', {slug: post.slug}) }}">{{ 'Read more'|trans }}</a>
                             </div><!--//item-inner-->
                         </div><!--//flip-item-->
                     {% endfor %}

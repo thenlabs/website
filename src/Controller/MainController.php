@@ -14,13 +14,14 @@ use App\Entity\Page;
 use App\Repository\BlogPostRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MainController extends AbstractController
 {
     /**
      * @Route("/", name="index")
      */
-    public function index(BlogPostRepository $postRepository)
+    public function index(BlogPostRepository $postRepository, TranslatorInterface $translator)
     {
         $posts = $postRepository->findPostsForCarousel();
 
@@ -31,31 +32,31 @@ class MainController extends AbstractController
                     'li_class' => 'nav-item sr-only',
                     'a_class'  => 'nav-link scrollto',
                     'href'     => '#promo',
-                    'text'     => 'Inicio',
+                    'text'     => $translator->trans('Home'),
                 ],
                 [
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link scrollto',
                     'href'     => '#projects',
-                    'text'     => 'Proyectos',
+                    'text'     => $translator->trans('Projects'),
                 ],
                 [
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link scrollto',
                     'href'     => '#blog',
-                    'text'     => 'Blog',
+                    'text'     => $translator->trans('Blog'),
                 ],
                 [
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link scrollto',
                     'href'     => '#socials',
-                    'text'     => 'Redes Sociales',
+                    'text'     => $translator->trans('Social Networks'),
                 ],
                 [
                     'li_class' => 'nav-item',
                     'a_class'  => 'nav-link scrollto',
                     'href'     => '#contact',
-                    'text'     => 'Contactar',
+                    'text'     => $translator->trans('Contact'),
                 ],
             ],
         ]);
@@ -105,7 +106,7 @@ class MainController extends AbstractController
                 'content' => $content,
                 'contentTitle' => $contentTitle,
                 'pageTitle' => $contentTitle,
-                'meta_description' => "{$contentTitle} | ThenLabs",
+                'meta_description' => "{$contentTitle}",
                 'menu' => $menu,
             ]);
         } else {

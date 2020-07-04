@@ -7,31 +7,31 @@
             'li_class': 'nav-item',
             'a_class' : 'nav-link',
             'href'    : path('index'),
-            'text'    : 'Inicio',
+            'text'    : 'Home'|trans,
         },
         {
             'li_class': 'nav-item',
             'a_class' : 'nav-link',
             'href'    : path('index') ~ '#projects',
-            'text'    : 'Proyectos',
+            'text'    : 'Projects'|trans,
         },
         {
             'li_class': 'nav-item',
             'a_class' : 'nav-link',
             'href'    : path('index') ~ '#blog',
-            'text'    : 'Blog',
+            'text'    : 'Blog'|trans,
         },
         {
             'li_class': 'nav-item',
             'a_class' : 'nav-link scrollto',
             'href'    : path('index') ~ '#socials',
-            'text'    : 'Redes Sociales',
+            'text'    : 'Social Networks'|trans,
         },
         {
             'li_class': 'nav-item',
             'a_class' : 'nav-link scrollto',
             'href'    : path('index') ~ '#contact',
-            'text'    : 'Contactar',
+            'text'    : 'Contact'|trans,
         },
     ] %}
 {% endif %}
@@ -84,9 +84,9 @@
     <section id="socials" class="contact section has-pattern">
         <div class="container">
             <div class="contact-inner">
-                <h2 class="title  text-center">Redes Sociales</h2>
+                <h2 class="title  text-center">{{ 'Social Networks'|trans }}</h2>
                 <div class="text-center">
-                    <p class="text-center">Suscríbase a nuestras redes sociales si desea mantenerse informado. <br> Próximamente estaremos estrenando nuestro blog y compartiremos los artículos por las mismas.</p>
+                    <p class="text-center">{{ 'section.description.social_networks'|trans|raw }}</p>
 
                     <ul class="social-icons list-inline">
                         <li class="list-inline-item"><a href="{{ telegram_url }}" target="_blank"><i class="fab fa-telegram"></i></a></li>
@@ -102,9 +102,9 @@
     <section id="contact" class="contact section has-pattern" style="padding-top: 0">
         <div class="container">
             <div class="contact-inner">
-                <h2 class="title  text-center">Contactar</h2>
+                <h2 class="title  text-center">{{ 'Contact'|trans }}</h2>
                 <div class="info text-center">
-                    <p class="text-center">Para contactarnos puede escribirnos a: <br> <a href="mailto:thenlabs@gmail.com">thenlabs@gmail.com</a></p>
+                    <p class="text-center">{{ 'section.description.contact'|trans|raw }}</p>
                 </div><!--//info-->
             </div><!--//contact-inner-->
         </div><!--//container-->

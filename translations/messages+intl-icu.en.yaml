@@ -1,0 +1,24 @@
+Home: Home
+Projects: Projects
+Blog: Blog
+'Social Networks': 'Social Networks'
+Contact: Contact
+slogan: 'We are dedicated to creating and managing open source software projects.'
+'Learn more': 'Learn more'
+'View on GitHub': 'View on GitHub'
+'Follow @{twitter_username}': 'Follow @{twitter_username}'
+Tweet: Tweet
+section.description.projects: 'The following list shows the projects of our organization. In the case of those that contain the "Previous" tag, we want to clarify that they were created before our existence as a project, however from now on they will somehow be taken up by us.'
+project.description.composed_views: 'PHP framework for creating reusable views.'
+'View Project': 'View Project'
+Previous: Previous
+project.description.pyramidal_tests: 'Convert PHPUnit into a BDD framework.'
+project.description.components: 'PHP package for creating custom component types.'
+project.description.class_builder: 'PHP package to build classes dynamically.'
+project.description.then_cli: 'Command line tools to manage community projects.'
+Abandoned: Abandoned
+project.description.glue_php: 'PHP framework for creating single page applications.'
+'Lastest blog posts': 'Lastest blog posts'
+'Read more': 'Read more'
+section.description.contact: 'To contact us you can write to: <br> thenlabs@gmail.com'
+section.description.social_networks: 'Subscribe to our social networks if you want to stay informed. <br> Soon we will be releasing our blog and we will share the articles for them.'
