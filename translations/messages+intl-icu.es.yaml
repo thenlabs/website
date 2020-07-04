@@ -1,0 +1,24 @@
+Home: __Home
+Projects: __Projects
+Blog: __Blog
+'Social Networks': '__Social Networks'
+Contact: __Contact
+slogan: __slogan
+'Learn more': '__Learn more'
+'View on GitHub': '__View on GitHub'
+'Follow @{twitter_username}': '__Follow @{twitter_username}'
+Tweet: __Tweet
+section.description.projects: __section.description.projects
+project.description.composed_views: __project.description.composed_views
+'View Project': '__View Project'
+Previous: __Previous
+project.description.pyramidal_tests: __project.description.pyramidal_tests
+project.description.components: __project.description.components
+project.description.class_builder: __project.description.class_builder
+project.description.then_cli: __project.description.then_cli
+Abandoned: __Abandoned
+project.description.glue_php: __project.description.glue_php
+'Lastest blog posts': '__Lastest blog posts'
+'Read more': '__Read more'
+section.description.social_networks: __section.description.social_networks
+section.description.contact: __section.description.contact

@@ -36,6 +36,11 @@
     ] %}
 {% endif %}
 
+{% set lang_items = {
+    'en': '<span class="flag-icon flag-icon-us"> </span> English',
+    'es': '<span class="flag-icon flag-icon-es"> </span> Español',
+} %}
+
 {% block styles %}
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -43,6 +48,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
     <!-- Global CSS -->
     <link rel="stylesheet" href="{{ asset('devAid/plugins/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('node_modules/flag-icon-css/css/flag-icon.min.css') }}">
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{ asset('devAid/plugins/prism/prism.css') }}">
     <!-- Theme CSS -->
@@ -72,6 +78,16 @@
                         {% for item in navigation %}
                             <li class="{{ item.li_class }}"><a class="{{ item.a_class }}" href="{{ item.href }}">{{ item.text }}</a></li>
                         {% endfor %}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:;" id="dropdown09" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-us"> </span> English</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown09">
+                                {% for lang, lang_item in lang_items %}
+                                    <a class="dropdown-item" href="#">{{ lang_item|raw }}</a>
+                                {% endfor %}
+                            </div>
+                        </li>
+
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
             </nav><!--//main-nav-->
@@ -122,6 +138,7 @@
 {% block scripts %}
     <!-- Javascript -->
     <script type="text/javascript" src="{{ asset('devAid/plugins/jquery-3.3.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('node_modules/popper.js/dist/umd/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('devAid/plugins/jquery.easing.1.3.js') }}"></script>
     <script type="text/javascript" src="{{ asset('devAid/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('devAid/plugins/jquery-scrollTo/jquery.scrollTo.min.js') }}"></script>
