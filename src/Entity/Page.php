@@ -12,8 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Page
 {
-    use Common\TimestampableTrait;
-    use Common\SlugTrait;
+    use Common\BlogPostAndPageTrait;
 
     /**
      * @ORM\Id()
@@ -57,10 +56,16 @@ class Page
      */
     private $published;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Page::class)
+     */
+    private $translations;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->translations = new ArrayCollection();
 
         $this->created = new \DateTime;
         $this->updated = new \DateTime;

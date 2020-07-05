@@ -24,7 +24,11 @@
             <h2 class="title">ThenLabs<span class="highlight"></span></h2>
             <p class="intro">{{ 'slogan'|trans }}</p>
             <div class="btns">
-                <a class="btn btn-cta-secondary" href="{{ path('page', {slug: 'about'}) }}">{{ 'Learn more'|trans }}</a>
+                {% if route_parameters._locale == 'en' %}
+                    <a class="btn btn-cta-secondary" href="{{ path('page', {slug: 'about' }) }}">{{ 'Learn more'|trans }}</a>
+                {% elseif route_parameters._locale == 'es' %}
+                    <a class="btn btn-cta-secondary" href="{{ path('page', {slug: 'conozcanos' }) }}">{{ 'Learn more'|trans }}</a>
+                {% endif %}
             </div>
             <ul class="meta list-inline">
                 <li class="list-inline-item">
