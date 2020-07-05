@@ -36,6 +36,14 @@
     ] %}
 {% endif %}
 
+{% if not menu is defined %}
+    {% set menu = [] %}
+{% endif %}
+
+{% if not translations_menu is defined %}
+    {% set translations_menu = [] %}
+{% endif %}
+
 {% set lang_items = {
     'en': '<span class="flag-icon flag-icon-us"> </span> English',
     'es': '<span class="flag-icon flag-icon-es"> </span> Español',

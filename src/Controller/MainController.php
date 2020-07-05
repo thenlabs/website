@@ -83,8 +83,8 @@ class MainController extends AbstractController
             'content' => $content,
             'contentTitle' => $title,
             'pageTitle' => $title,
-            'menu' => [],
-            'translations_menu' => [],
+            // 'menu' => [],
+            // 'translations_menu' => [],
         ]);
     }
 
