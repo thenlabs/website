@@ -89,15 +89,17 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/docs/{project}/{branch}/{language}/{resource}.{extension}", name="docs", requirements={"resource"=".+"})
+     * @Route("/doc/{project}/{branch}/{resource}.{extension}", name="doc", requirements={"resource"=".+"})
      */
-    public function docs(string $project, string $branch, string $language, string $resource, string $extension, MarkdownParserInterface $parser)
+    public function doc(string $project, string $branch, string $resource, string $extension, MarkdownParserInterface $parser, Request $request)
     {
+        $language = $request->getLocale();
+
         if ($extension == 'html') {
             $extension = 'md';
         }
 
-        $filename = __DIR__."/../../docs/{$project}/{$branch}/docs/{$language}/{$resource}.{$extension}";
+        $filename = __DIR__."/../../doc/{$project}/{$branch}/{$language}/{$resource}.{$extension}";
 
         if (! file_exists($filename)) {
             throw new NotFoundHttpException;
