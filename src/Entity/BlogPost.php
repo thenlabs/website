@@ -67,10 +67,16 @@ class BlogPost
      */
     private $language;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=BlogPost::class)
+     */
+    private $translations;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->translations = new ArrayCollection();
 
         $this->created = new \DateTime;
         $this->updated = new \DateTime;
@@ -216,5 +222,38 @@ class BlogPost
         $this->language = $language;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getTranslations(): Collection
+    {
+        return $this->translations;
+    }
+
+    public function addTranslation(self $translation): self
+    {
+        if (!$this->translations->contains($translation)) {
+            $this->translations[] = $translation;
+            $translation->addTranslation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTranslation(self $translation): self
+    {
+        if ($this->translations->contains($translation)) {
+            $this->translations->removeElement($translation);
+            $translation->removeTranslation($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }
