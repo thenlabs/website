@@ -15,6 +15,7 @@ use App\Repository\BlogPostRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route(
@@ -29,9 +30,9 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(BlogPostRepository $postRepository, TranslatorInterface $translator)
+    public function index(Request $request, BlogPostRepository $postRepository, TranslatorInterface $translator)
     {
-        $posts = $postRepository->findPostsForCarousel();
+        $posts = $postRepository->findPostsForCarousel($request->getLocale());
 
         return $this->render('devAid/page-index.html.twig', [
             'posts' => $posts,
@@ -171,6 +172,8 @@ class MainController extends AbstractController
             ''
         ;
 
+        $translationsMenu = [];
+
         if ($entity instanceof BlogPost) {
             $date = $entity->getCreated()->format('Y-m-d');
             $url = $this->generateUrl('blogPost', ['slug' => $entity->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL);
@@ -181,6 +184,33 @@ class MainController extends AbstractController
                     <div class="fb-share-button" data-href="{$url}" data-layout="button_count"></div>
                 </p>
             HTML);
+
+            foreach ($entity->getTranslations() as $translation) {
+                $text = '';
+                $language = $translation->getLanguage();
+
+                switch ($language) {
+                    case 'es':
+                        $text = 'Español';
+                        break;
+
+                    case 'en':
+                        $text = 'English';
+                        break;
+
+                    default:
+                        $text = '???';
+                        break;
+                }
+
+                $url = $this->generateUrl(
+                    'blogPost',
+                    ['slug' => $translation->getSlug(), '_locale' => $language],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                );
+
+                $translationsMenu[] = compact('text', 'url');
+            }
         }
 
         return $this->render('devAid/page-docs.html.twig', [
@@ -190,6 +220,7 @@ class MainController extends AbstractController
             'meta_description' => "{$title} | ThenLabs",
             'ogDescription' => $ogDescription,
             'menu' => $menu,
+            'translations_menu' => $translationsMenu,
         ]);
     }
 

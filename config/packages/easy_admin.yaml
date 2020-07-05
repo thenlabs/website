@@ -11,7 +11,7 @@ easy_admin:
                     - title
                     - slug
                     - public
-                    - { property: 'language', type: 'choice', type_options: { choices: { 'Español': 'es', 'English': 'en' }, data: 'es' } }
+                    - { property: 'language', type: 'choice', type_options: { choices: { 'Español': 'es', 'English': 'en' } } }
                     - { property: 'translations', type_options: { by_reference: false } }
                     - { property: 'abstract', type: 'code_editor', language: 'markdown' }
                     - { property: 'content', type: 'code_editor', language: 'markdown' }

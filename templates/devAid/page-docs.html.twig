@@ -49,6 +49,20 @@
             </div>
         </div>
     {% endif %}
+
+    {% if not translations_menu is empty %}
+        <div class="row">
+            <div class="col">
+                <div class="wrapper-content section-menu">
+                    <ul class="list-unstyled">
+                        {% for item in translations_menu %}
+                            <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {% block right_sidebar %}
