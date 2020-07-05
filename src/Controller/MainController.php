@@ -138,6 +138,10 @@ class MainController extends AbstractController
      */
     public function blogPost(BlogPost $post, MarkdownParserInterface $parser)
     {
+        if (! $post->isPublic()) {
+            throw new NotFoundHttpException;
+        }
+
         return $this->getResponseForMarkdownContent($post, $parser);
     }
 

@@ -57,10 +57,24 @@ class BlogPost
      */
     private $abstract;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $published;
+
+    /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    private $language;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
+
+        $this->created = new \DateTime;
+        $this->updated = new \DateTime;
+        $this->published = new \DateTime;
     }
 
     public function getId(): ?int
@@ -176,6 +190,30 @@ class BlogPost
     public function setAbstract(string $abstract): self
     {
         $this->abstract = $abstract;
+
+        return $this;
+    }
+
+    public function getPublished(): ?\DateTimeInterface
+    {
+        return $this->published;
+    }
+
+    public function setPublished(\DateTimeInterface $published): self
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?string
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?string $language): self
+    {
+        $this->language = $language;
 
         return $this;
     }

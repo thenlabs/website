@@ -52,10 +52,19 @@ class Page
      */
     private $public;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $published;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->tags = new ArrayCollection();
+
+        $this->created = new \DateTime;
+        $this->updated = new \DateTime;
+        $this->published = new \DateTime;
     }
 
     public function getId(): ?int
@@ -159,6 +168,18 @@ class Page
     public function setPublic(bool $public): self
     {
         $this->public = $public;
+
+        return $this;
+    }
+
+    public function getPublished(): ?\DateTimeInterface
+    {
+        return $this->published;
+    }
+
+    public function setPublished(\DateTimeInterface $published): self
+    {
+        $this->published = $published;
 
         return $this;
     }

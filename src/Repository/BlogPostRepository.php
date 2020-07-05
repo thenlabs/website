@@ -23,7 +23,7 @@ class BlogPostRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.public = true')
-            ->orderBy('p.created', 'DESC')
+            ->orderBy('p.published', 'DESC')
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
