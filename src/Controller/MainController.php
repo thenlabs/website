@@ -72,6 +72,23 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/about", name="about")
+     */
+    public function about(Request $request, TranslatorInterface $translator)
+    {
+        $content = $this->renderView("content/about-{$request->getLocale()}.html.twig");
+        $title = $translator->trans('about_title');
+
+        return $this->render('devAid/page-docs.html.twig', [
+            'content' => $content,
+            'contentTitle' => $title,
+            'pageTitle' => $title,
+            'menu' => [],
+            'translations_menu' => [],
+        ]);
+    }
+
+    /**
      * @Route("/docs/{project}/{branch}/{language}/{resource}.{extension}", name="docs", requirements={"resource"=".+"})
      */
     public function docs(string $project, string $branch, string $language, string $resource, string $extension, MarkdownParserInterface $parser)
