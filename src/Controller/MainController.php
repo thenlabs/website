@@ -209,7 +209,7 @@ class MainController extends AbstractController
                     UrlGeneratorInterface::ABSOLUTE_URL
                 );
 
-                $translationsMenu[] = compact('text', 'url');
+                $translationsMenu[] = compact('text', 'url', 'language');
             }
         }
 

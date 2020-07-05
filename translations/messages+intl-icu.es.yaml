@@ -1,24 +1,25 @@
-Home: __Home
-Projects: __Projects
-Blog: __Blog
-'Social Networks': '__Social Networks'
-Contact: __Contact
-slogan: __slogan
-'Learn more': '__Learn more'
-'View on GitHub': '__View on GitHub'
-'Follow @{twitter_username}': '__Follow @{twitter_username}'
-Tweet: __Tweet
-section.description.projects: __section.description.projects
-project.description.composed_views: __project.description.composed_views
-'View Project': '__View Project'
-Previous: __Previous
-project.description.pyramidal_tests: __project.description.pyramidal_tests
-project.description.components: __project.description.components
-project.description.class_builder: __project.description.class_builder
-project.description.then_cli: __project.description.then_cli
-Abandoned: __Abandoned
-project.description.glue_php: __project.description.glue_php
-'Lastest blog posts': '__Lastest blog posts'
-'Read more': '__Read more'
-section.description.social_networks: __section.description.social_networks
-section.description.contact: __section.description.contact
+Home: Inicio
+Projects: Proyectos
+Blog: Blog
+'Social Networks': 'Redes Sociales'
+Contact: Contactar
+slogan: 'Nos dedicamos a crear y gestionar proyectos de software de código abierto.'
+'Learn more': 'Conocer más'
+'View on GitHub': 'Ver en GitHub'
+'Follow @{twitter_username}': 'Seguir a @{twitter_username}'
+Tweet: Tweet
+section.description.projects: 'El siguiente listado muestra los proyectos de nuestra organización. En el caso de los que contienen la etiqueta "Anterior" queremos aclarar que fueron creados antes de nuestra existencia como proyecto, no obstante en lo adelante serán de alguna manera retomados por nosotros.'
+project.description.composed_views: 'Framework PHP para la creación de vistas reutilizables.'
+'View Project': 'Ver Proyecto'
+Previous: Anterior
+project.description.pyramidal_tests: 'Convierte PHPUnit en un framework BDD.'
+project.description.components: 'Paquete PHP para la creación de tipos de componentes personalizados.'
+project.description.class_builder: 'Paquete PHP para la construir clases dinámicamente.'
+project.description.then_cli: 'Herramientas de línea de comandos para gestionar proyectos de la comunidad.'
+Abandoned: Abandonado
+project.description.glue_php: 'Framework PHP para crear aplicaciones de una sola página (SPA).'
+'Lastest blog posts': 'Últimas entradas del blog'
+'Read more': 'Seguir leyendo'
+section.description.social_networks: 'Suscríbase a nuestras redes sociales si desea mantenerse informado. <br> Próximamente estaremos estrenando nuestro blog y compartiremos los artículos por las mismas.'
+section.description.contact: 'Para contactarnos puede escribirnos a: <br> <a href="mailto:thenlabs@gmail.com">thenlabs@gmail.com</a>'
+Translations: Traducciones
