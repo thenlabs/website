@@ -15,6 +15,7 @@ easy_admin:
                     - { property: 'translations', type_options: { by_reference: false } }
                     - { property: 'abstract', type: 'code_editor', language: 'markdown' }
                     - { property: 'content', type: 'code_editor', language: 'markdown' }
+                    - published
                     - created
                     - updated
                     - categories
