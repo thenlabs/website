@@ -2,20 +2,20 @@
 
 namespace App\Controller;
 
-use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Wa72\HtmlPageDom\HtmlPageCrawler;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Entity\BlogPost;
 use App\Entity\Page;
 use App\Repository\BlogPostRepository;
+use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Symfony\Component\HttpFoundation\Request;
+use Wa72\HtmlPageDom\HtmlPageCrawler;
 
 /**
  * @Route(
@@ -39,33 +39,33 @@ class MainController extends AbstractController
             'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',
-                    'a_class'  => 'nav-link scrollto',
-                    'href'     => '#promo',
-                    'text'     => $translator->trans('Home'),
+                    'a_class' => 'nav-link scrollto',
+                    'href' => '#promo',
+                    'text' => $translator->trans('Home'),
                 ],
                 [
                     'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link scrollto',
-                    'href'     => '#projects',
-                    'text'     => $translator->trans('Projects'),
+                    'a_class' => 'nav-link scrollto',
+                    'href' => '#projects',
+                    'text' => $translator->trans('Projects'),
                 ],
                 [
                     'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link scrollto',
-                    'href'     => '#blog',
-                    'text'     => $translator->trans('Blog'),
+                    'a_class' => 'nav-link scrollto',
+                    'href' => '#blog',
+                    'text' => $translator->trans('Blog'),
                 ],
                 [
                     'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link scrollto',
-                    'href'     => '#socials',
-                    'text'     => $translator->trans('Social Networks'),
+                    'a_class' => 'nav-link scrollto',
+                    'href' => '#socials',
+                    'text' => $translator->trans('Social Networks'),
                 ],
                 [
                     'li_class' => 'nav-item',
-                    'a_class'  => 'nav-link scrollto',
-                    'href'     => '#contact',
-                    'text'     => $translator->trans('Contact'),
+                    'a_class' => 'nav-link scrollto',
+                    'href' => '#contact',
+                    'text' => $translator->trans('Contact'),
                 ],
             ],
         ]);
@@ -95,18 +95,18 @@ class MainController extends AbstractController
     {
         $language = $request->getLocale();
 
-        if ($extension == 'html') {
+        if ('html' == $extension) {
             $extension = 'md';
         }
 
         $filename = __DIR__."/../../doc/{$project}/{$branch}/{$language}/{$resource}.{$extension}";
 
-        if (! file_exists($filename)) {
-            throw new NotFoundHttpException;
+        if (!file_exists($filename)) {
+            throw new NotFoundHttpException();
         }
 
-        $fileInfo = pathInfo($filename);
-        if ($fileInfo['extension'] == 'md') {
+        $fileInfo = pathinfo($filename);
+        if ('md' == $fileInfo['extension']) {
             $parser->code_class_prefix = 'language-';
             $parser->url_filter_func = function ($url) {
                 return preg_replace('/\.md$/', '.html', $url);
@@ -116,6 +116,7 @@ class MainController extends AbstractController
 
             /**
              * The content should be wrapped because the crawler has bug when deleting root nodes.
+             *
              * @see https://github.com/wasinger/htmlpagedom/issues/25#issuecomment-507515271
              */
             $content = HtmlPageCrawler::create('<div class="docs-content">'.$content.'</div>');
@@ -158,8 +159,8 @@ class MainController extends AbstractController
      */
     public function blogPost(BlogPost $post, MarkdownParserInterface $parser)
     {
-        if (! $post->isPublic()) {
-            throw new NotFoundHttpException;
+        if (!$post->isPublic()) {
+            throw new NotFoundHttpException();
         }
 
         return $this->getResponseForMarkdownContent($post, $parser);

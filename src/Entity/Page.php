@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
@@ -67,9 +66,9 @@ class Page
         $this->tags = new ArrayCollection();
         $this->translations = new ArrayCollection();
 
-        $this->created = new \DateTime;
-        $this->updated = new \DateTime;
-        $this->published = new \DateTime;
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+        $this->published = new \DateTime();
     }
 
     public function getId(): ?int

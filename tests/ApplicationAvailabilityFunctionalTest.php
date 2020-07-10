@@ -48,10 +48,10 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
         }
 
         $doc = [
-            'class-builder'   => ['master', '1.0'],
-            'cli'             => ['master', '1.0'],
-            'components'      => ['master', '1.0'],
-            'composed-views'  => ['master', '1.0'],
+            'class-builder' => ['master', '1.0'],
+            'cli' => ['master', '1.0'],
+            'components' => ['master', '1.0'],
+            'composed-views' => ['master', '1.0'],
             'pyramidal-tests' => ['master', '1.1'],
         ];
 

@@ -31,8 +31,12 @@
 {% endblock %}
 
 {% block before_body %}
+    {% set facebook_locale = 'en_US' %}
+    {% if route_parameters._locale == 'es' %}
+        {% set facebook_locale = 'es_ES' %}
+    {% endif %}
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v7.0&appId=1376605832728926&autoLogAppEvents=1" nonce="tVaW2yKx"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/{{ facebook_locale }}/sdk.js#xfbml=1&version=v7.0&appId=1376605832728926&autoLogAppEvents=1" nonce="tVaW2yKx"></script>
 {% endblock %}
 
 {% block left_sidebar %}

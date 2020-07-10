@@ -21,18 +21,21 @@ class Image
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
      * @var string
      */
     private $image;
 
     /**
      * @Vich\UploadableField(mapping="admin_images", fileNameProperty="image")
+     *
      * @var File
      */
     private $imageFile;
 
     /**
      * @ORM\Column(type="datetime")
+     *
      * @var \DateTime
      */
     private $updatedAt;

@@ -7,7 +7,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 trait TimestampableTrait
 {
     /**
-     * @var \DateTime $created
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
@@ -15,7 +15,7 @@ trait TimestampableTrait
     private $created;
 
     /**
-     * @var \DateTime $updated
+     * @var \DateTime
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})

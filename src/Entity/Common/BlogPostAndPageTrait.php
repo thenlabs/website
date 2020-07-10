@@ -2,8 +2,6 @@
 
 namespace App\Entity\Common;
 
-use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 trait BlogPostAndPageTrait

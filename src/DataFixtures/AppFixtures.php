@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $admin = new User;
+        $admin = new User();
         $admin->setEmail('admin@thenlabs.org');
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPassword($this->encoder->encodePassword($admin, 'admin123'));
