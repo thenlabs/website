@@ -64,6 +64,33 @@ class BlogPost
      */
     private $translations;
 
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     */
+    private $updated;
+
+    /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    private $language;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -204,11 +231,6 @@ class BlogPost
         return $this;
     }
 
-    /**
-     * @ORM\Column(type="string", length=3, nullable=true)
-     */
-    private $language;
-
     public function getLanguage(): ?string
     {
         return $this->language;
@@ -254,12 +276,6 @@ class BlogPost
         return $this->title;
     }
 
-    /**
-     * @Gedmo\Slug(fields={"title"})
-     * @ORM\Column(length=128, unique=true)
-     */
-    private $slug;
-
     public function getSlug(): ?string
     {
         return $this->slug;
@@ -271,22 +287,6 @@ class BlogPost
 
         return $this;
     }
-
-    /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
-     */
-    private $created;
-
-    /**
-     * @var \DateTime
-     *
-     * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
-     */
-    private $updated;
 
     public function getCreated(): ?\DateTimeInterface
     {

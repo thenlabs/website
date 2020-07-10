@@ -19,14 +19,14 @@ class BlogPostRepository extends ServiceEntityRepository
         parent::__construct($registry, BlogPost::class);
     }
 
-    public function findPostsForCarousel(string $locale): array
+    public function findPublishedPosts(string $locale, ?int $max = null): array
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.public = true')
             ->andWhere('p.language = :locale')
             ->setParameter('locale', $locale)
             ->orderBy('p.published', 'DESC')
-            ->setMaxResults(5)
+            ->setMaxResults($max)
             ->getQuery()
             ->getResult()
         ;

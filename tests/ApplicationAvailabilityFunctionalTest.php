@@ -47,6 +47,17 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
             yield ["/{$locale}/"];
         }
 
+        $otherPaths = [
+            '/blog',
+            '/blog/my-slug-1.html',
+        ];
+
+        foreach ($locales as $locale) {
+            foreach ($otherPaths as $path) {
+                yield ["/{$locale}{$path}"];
+            }
+        }
+
         $doc = [
             'class-builder' => ['master', '1.0'],
             'cli' => ['master', '1.0'],

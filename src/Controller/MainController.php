@@ -30,17 +30,17 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(Request $request, BlogPostRepository $postRepository, TranslatorInterface $translator)
+    public function index(Request $request, BlogPostRepository $blogPostRepository, TranslatorInterface $translator)
     {
-        $posts = $postRepository->findPostsForCarousel($request->getLocale());
+        $posts = $blogPostRepository->findPublishedPosts($request->getLocale());
 
         return $this->render('devAid/page-index.html.twig', [
             'posts' => $posts,
             'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',
-                    'a_class' => 'nav-link scrollto',
-                    'href' => '#promo',
+                    'a_class' => 'nav-link',
+                    'href' => $this->generateUrl('index'),
                     'text' => $translator->trans('Home'),
                 ],
                 [
@@ -51,8 +51,8 @@ class MainController extends AbstractController
                 ],
                 [
                     'li_class' => 'nav-item',
-                    'a_class' => 'nav-link scrollto',
-                    'href' => '#blog',
+                    'a_class' => 'nav-link',
+                    'href' => $this->generateUrl('blog'),
                     'text' => $translator->trans('Blog'),
                 ],
                 [
@@ -83,8 +83,6 @@ class MainController extends AbstractController
             'content' => $content,
             'contentTitle' => $title,
             'pageTitle' => $title,
-            // 'menu' => [],
-            // 'translations_menu' => [],
         ]);
     }
 
@@ -146,36 +144,36 @@ class MainController extends AbstractController
     /**
      * @Route("/blog", name="blog")
      */
-    public function blog()
+    public function blog(Request $request, BlogPostRepository $blogPostRepository)
     {
-        return new RedirectResponse(
-            $this->generateUrl('index').'#blog'
-        );
+        return $this->render('devAid/page-blog.html.twig', [
+            'posts' => $blogPostRepository->findPublishedPosts($request->getLocale()),
+        ]);
     }
 
     /**
      * @Route("/blog/{slug}.html", name="blogPost")
      * @ParamConverter("post", class="App\Entity\BlogPost")
      */
-    public function blogPost(BlogPost $post, MarkdownParserInterface $parser)
+    public function blogPost(BlogPost $post, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
         if (!$post->isPublic()) {
             throw new NotFoundHttpException();
         }
 
-        return $this->getResponseForMarkdownContent($post, $parser);
+        return $this->getResponseFromMarkdownContent($post, $parser, $translator);
     }
 
-    /**
-     * @Route("/page/{slug}.html", name="page")
-     * @ParamConverter("page", class="App\Entity\Page")
-     */
-    public function page(Page $page, MarkdownParserInterface $parser)
-    {
-        return $this->getResponseForMarkdownContent($page, $parser);
-    }
+    // /**
+    //  * @Route("/page/{slug}.html", name="page")
+    //  * @ParamConverter("page", class="App\Entity\Page")
+    //  */
+    // public function page(Page $page, MarkdownParserInterface $parser)
+    // {
+    //     return $this->getResponseFromMarkdownContent($page, $parser);
+    // }
 
-    public function getResponseForMarkdownContent($entity, MarkdownParserInterface $parser)
+    public function getResponseFromMarkdownContent($entity, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
         $parser->code_class_prefix = 'language-';
 
@@ -193,6 +191,7 @@ class MainController extends AbstractController
         ;
 
         $translationsMenu = [];
+        $publicationDateStr = $translator->trans('publication_date');
 
         if ($entity instanceof BlogPost) {
             $date = $entity->getCreated()->format('Y-m-d');
@@ -200,7 +199,7 @@ class MainController extends AbstractController
 
             $content->append(<<<HTML
                 <p class="text-center" style="margin-top:25px">
-                    <small><i class="far fa-clock"></i> Fecha de publicación: {$date}</small>
+                    <small><i class="far fa-clock"></i> {$publicationDateStr}: {$date}</small>
                     <div class="fb-share-button" data-href="{$url}" data-layout="button_count"></div>
                 </p>
             HTML);
