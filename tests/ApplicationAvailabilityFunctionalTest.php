@@ -8,6 +8,7 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
 {
     /**
      * @dataProvider urlProvider
+     * @testdox      page successful: '$url'
      */
     public function testPageIsSuccessful($url)
     {
@@ -21,15 +22,25 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
 
     public function urlProvider()
     {
-        yield ['/en/'];
-        yield ['/es/'];
-        yield ['/en/about'];
-        yield ['/es/about'];
-        // yield ['/page/faq'];
-        // yield ['/docs/pyramidal-tests/master/es/index.html'];
-        // yield ['/docs/components/master/es/index.html'];
-        // yield ['/docs/class-builder/master/es/index.html'];
-        // yield ['/docs/cli/master/es/index.html'];
-        // yield ['/docs/composed-views/master/es/index.html'];
+        $locales = ['en', 'es'];
+        $paths = [
+            '/about',
+            '/doc/class-builder/master/index.html',
+            '/doc/class-builder/1.0/index.html',
+            '/doc/cli/master/index.html',
+            '/doc/cli/1.0/index.html',
+            '/doc/components/master/index.html',
+            '/doc/components/1.0/index.html',
+            '/doc/composed-views/master/index.html',
+            '/doc/composed-views/1.0/index.html',
+            '/doc/pyramidal-tests/master/index.html',
+            '/doc/pyramidal-tests/1.1/index.html',
+        ];
+
+        foreach ($locales as $locale) {
+            foreach ($paths as $path) {
+                yield ["/{$locale}{$path}"];
+            }
+        }
     }
 }
