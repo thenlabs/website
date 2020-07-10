@@ -20,6 +20,25 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
+    public function testRedirectToEnglishByDefault()
+    {
+        $client = self::createClient();
+        $client->request('GET', '/');
+
+        $this->assertResponseRedirects('/en/');
+    }
+
+    public function testRedirectToSpanishWhenThatIsThePreferredLanguageOfTheBrowser()
+    {
+        $client = self::createClient([], [
+            'HTTP_ACCEPT-LANGUAGE' => 'es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3',
+        ]);
+
+        $client->request('GET', '/');
+
+        $this->assertResponseRedirects('/es/');
+    }
+
     public function urlProvider()
     {
         $locales = ['en', 'es'];
