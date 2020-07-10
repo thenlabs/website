@@ -5,14 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BlogPostRepository")
  */
 class BlogPost
 {
-    use Common\BlogPostAndPageTrait;
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -201,6 +200,114 @@ class BlogPost
     public function setPublished(\DateTimeInterface $published): self
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    private $language;
+
+    public function getLanguage(): ?string
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?string $language): self
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getTranslations(): Collection
+    {
+        return $this->translations;
+    }
+
+    public function addTranslation(self $translation): self
+    {
+        if (!$this->translations->contains($translation)) {
+            $this->translations[] = $translation;
+            $translation->addTranslation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTranslation(self $translation): self
+    {
+        if ($this->translations->contains($translation)) {
+            $this->translations->removeElement($translation);
+            $translation->removeTranslation($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     */
+    private $updated;
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getUpdated(): ?\DateTimeInterface
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated(\DateTimeInterface $updated): self
+    {
+        $this->updated = $updated;
 
         return $this;
     }

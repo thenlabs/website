@@ -5,14 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
 class Tag
 {
-    use Common\TimestampableTrait;
-
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -30,9 +29,28 @@ class Tag
      */
     private $blogPosts;
 
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     *
+     * @Gedmo\Timestampable(on="update")
+     * @ORM\Column(type="datetime", options={"default" : "CURRENT_TIMESTAMP"})
+     */
+    private $updated;
+
     public function __construct()
     {
         $this->blogPosts = new ArrayCollection();
+
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
     }
 
     public function getId(): ?int
@@ -76,6 +94,30 @@ class Tag
             $this->blogPosts->removeElement($blogPost);
             $blogPost->removeTag($this);
         }
+
+        return $this;
+    }
+
+    public function getCreated(): ?\DateTimeInterface
+    {
+        return $this->created;
+    }
+
+    public function setCreated(\DateTimeInterface $created): self
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    public function getUpdated(): ?\DateTimeInterface
+    {
+        return $this->updated;
+    }
+
+    public function setUpdated(\DateTimeInterface $updated): self
+    {
+        $this->updated = $updated;
 
         return $this;
     }
