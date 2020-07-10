@@ -23,23 +23,24 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
     public function urlProvider()
     {
         $locales = ['en', 'es'];
-        $paths = [
-            '/about',
-            '/doc/class-builder/master/index.html',
-            '/doc/class-builder/1.0/index.html',
-            '/doc/cli/master/index.html',
-            '/doc/cli/1.0/index.html',
-            '/doc/components/master/index.html',
-            '/doc/components/1.0/index.html',
-            '/doc/composed-views/master/index.html',
-            '/doc/composed-views/1.0/index.html',
-            '/doc/pyramidal-tests/master/index.html',
-            '/doc/pyramidal-tests/1.1/index.html',
+
+        foreach ($locales as $locale) {
+            yield ["/{$locale}/"];
+        }
+
+        $doc = [
+            'class-builder'   => ['master', '1.0'],
+            'cli'             => ['master', '1.0'],
+            'components'      => ['master', '1.0'],
+            'composed-views'  => ['master', '1.0'],
+            'pyramidal-tests' => ['master', '1.1'],
         ];
 
         foreach ($locales as $locale) {
-            foreach ($paths as $path) {
-                yield ["/{$locale}{$path}"];
+            foreach ($doc as $project => $versions) {
+                foreach ($versions as $version) {
+                    yield ["/{$locale}/doc/{$project}/{$version}/index.html"];
+                }
             }
         }
     }
