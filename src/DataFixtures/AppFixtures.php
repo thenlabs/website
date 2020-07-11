@@ -57,8 +57,29 @@ class AppFixtures extends Fixture
         $post2->setPublic(true);
         $post2->setAbstract($abstract);
 
+        $post3 = new BlogPost();
+        $post3->setTitle('Mi Título 3');
+        $post3->setSlug('mi-titulo-3');
+        $post3->setLanguage('es');
+        $post3->setContent($content);
+        $post3->setPublic(true);
+        $post3->setAbstract($abstract);
+
+        $post4 = new BlogPost();
+        $post4->setTitle('Mi Título 4');
+        $post4->setSlug('mi-titulo-4');
+        $post4->setLanguage('es');
+        $post4->setContent($content);
+        $post4->setPublic(true);
+        $post4->setAbstract($abstract);
+
+        $post1->addTranslation($post3);
+        $post2->addTranslation($post4);
+
         $manager->persist($post1);
         $manager->persist($post2);
+        $manager->persist($post3);
+        $manager->persist($post4);
         $manager->persist($admin);
         $manager->flush();
     }
