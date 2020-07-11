@@ -1,5 +1,5 @@
 
-{% extends 'devAid/layout-left-sidebar.html.twig' %}
+{% extends 'devAid/layout-sidebar.html.twig' %}
 
 {% block styles %}
     {{ parent() }}
@@ -57,22 +57,13 @@
 
 {% block right_sidebar %}
     <div class="wrapper-content docs-content">
-        {% if not translations_menu is empty %}
-            <div class="row">
-                <div class="col">
-                    <div style="float: right; margin-bottom: 20px">
-                        {{ 'Translations'|trans }}
-                        {% for item in translations_menu %}
-                            <a href="{{ item.url }}">{{ item.text }}</a>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        {% endif %}
+        {% block before_content %}{% endblock %}
 
         <h1 class="title text-center">{{ contentTitle }}</h1>
 
         {{ content|raw }}
+
+        {% block after_content %}{% endblock %}
 
         <div class="row">
             <div class="col">

@@ -79,7 +79,7 @@ class MainController extends AbstractController
         $content = $this->renderView("content/about-{$request->getLocale()}.html.twig");
         $title = $translator->trans('about_title');
 
-        return $this->render('devAid/page-docs.html.twig', [
+        return $this->render('devAid/page.html.twig', [
             'content' => $content,
             'contentTitle' => $title,
             'pageTitle' => $title,
@@ -129,7 +129,7 @@ class MainController extends AbstractController
 
             $menu = $this->getMenu($content);
 
-            return $this->render('devAid/page-docs.html.twig', [
+            return $this->render('devAid/page-doc.html.twig', [
                 'content' => $content,
                 'contentTitle' => $contentTitle,
                 'pageTitle' => $contentTitle,
@@ -155,88 +155,59 @@ class MainController extends AbstractController
      * @Route("/blog/{slug}.html", name="blogPost")
      * @ParamConverter("post", class="App\Entity\BlogPost")
      */
-    public function blogPost(BlogPost $post, MarkdownParserInterface $parser, TranslatorInterface $translator)
+    public function blogPost(BlogPost $blogPost, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
-        if (!$post->isPublic()) {
+        if (!$blogPost->isPublic()) {
             throw new NotFoundHttpException();
         }
 
-        return $this->getResponseFromMarkdownContent($post, $parser, $translator);
-    }
-
-    // /**
-    //  * @Route("/page/{slug}.html", name="page")
-    //  * @ParamConverter("page", class="App\Entity\Page")
-    //  */
-    // public function page(Page $page, MarkdownParserInterface $parser)
-    // {
-    //     return $this->getResponseFromMarkdownContent($page, $parser);
-    // }
-
-    public function getResponseFromMarkdownContent($entity, MarkdownParserInterface $parser, TranslatorInterface $translator)
-    {
         $parser->code_class_prefix = 'language-';
 
-        $content = $parser->transformMarkdown($entity->getContent());
+        $content = $parser->transformMarkdown($blogPost->getContent());
         $content = HtmlPageCrawler::create('<div class="docs-content">'.$content.'</div>');
         $content->filter('pre > code:not([class])')->addClass('language-markup');
         $content->filter('img:not([class])')->addClass('img-fluid');
 
-        $title = $entity->getTitle();
+        $title = $blogPost->getTitle();
         $menu = $this->getMenu($content);
-
-        $ogDescription = $entity instanceof BlogPost ?
-            substr($entity->getAbstract(), 0, 195) :
-            ''
-        ;
+        $ogDescription = substr($blogPost->getAbstract(), 0, 195);
 
         $translationsMenu = [];
         $publicationDateStr = $translator->trans('publication_date');
 
-        if ($entity instanceof BlogPost) {
-            $date = $entity->getCreated()->format('Y-m-d');
-            $url = $this->generateUrl('blogPost', ['slug' => $entity->getSlug()], UrlGeneratorInterface::ABSOLUTE_URL);
+        foreach ($blogPost->getTranslations() as $translation) {
+            $text = '';
+            $language = $translation->getLanguage();
 
-            $content->append(<<<HTML
-                <p class="text-center" style="margin-top:25px">
-                    <small><i class="far fa-clock"></i> {$publicationDateStr}: {$date}</small>
-                    <div class="fb-share-button" data-href="{$url}" data-layout="button_count"></div>
-                </p>
-            HTML);
+            switch ($language) {
+                case 'es':
+                    $text = 'Español';
+                    break;
 
-            foreach ($entity->getTranslations() as $translation) {
-                $text = '';
-                $language = $translation->getLanguage();
+                case 'en':
+                    $text = 'English';
+                    break;
 
-                switch ($language) {
-                    case 'es':
-                        $text = 'Español';
-                        break;
-
-                    case 'en':
-                        $text = 'English';
-                        break;
-
-                    default:
-                        $text = '???';
-                        break;
-                }
-
-                $url = $this->generateUrl(
-                    'blogPost',
-                    ['slug' => $translation->getSlug(), '_locale' => $language],
-                    UrlGeneratorInterface::ABSOLUTE_URL
-                );
-
-                $translationsMenu[] = compact('text', 'url', 'language');
+                default:
+                    $text = '???';
+                    break;
             }
+
+            $url = $this->generateUrl(
+                'blogPost',
+                ['slug' => $translation->getSlug(), '_locale' => $language],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            );
+
+            $translationsMenu[] = compact('text', 'url', 'language');
         }
 
-        return $this->render('devAid/page-docs.html.twig', [
+        return $this->render('devAid/page-blog-post.html.twig', [
             'content' => $content,
             'contentTitle' => $title,
+            'blogPost' => $blogPost,
             'pageTitle' => $title,
-            'meta_description' => "{$title} | ThenLabs",
+            'meta_description' => $ogDescription,
             'ogDescription' => $ogDescription,
             'menu' => $menu,
             'translations_menu' => $translationsMenu,

@@ -1,0 +1,24 @@
+
+{% extends 'devAid/page.html.twig' %}
+
+{% block before_content %}
+    {% if not translations_menu is empty %}
+        <div class="row">
+            <div class="col">
+                <div style="float: right; margin-bottom: 20px">
+                    {{ 'Translations'|trans }}
+                    {% for item in translations_menu %}
+                        <a href="{{ item.url }}">{{ item.text }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block after_content %}
+    <p class="text-center" style="margin-top:25px">
+        <small><i class="far fa-clock"></i> {{ 'publication_date'|trans }}: {{ blogPost.published|date('Y-m-d') }}</small>
+        <div class="fb-share-button" data-href="{{ path('blogPost', {slug: blogPost.slug}) }}" data-layout="button_count"></div>
+    </p>
+{% endblock %}
