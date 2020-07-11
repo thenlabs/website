@@ -91,13 +91,13 @@ class MainController extends AbstractController
      */
     public function doc(string $project, string $branch, string $resource, string $extension, MarkdownParserInterface $parser, Request $request)
     {
-        $language = $request->getLocale();
+        $locale = $request->getLocale();
 
         if ('html' == $extension) {
             $extension = 'md';
         }
 
-        $filename = __DIR__."/../../doc/{$project}/{$branch}/{$language}/{$resource}.{$extension}";
+        $filename = __DIR__."/../../doc/{$project}/{$branch}/{$locale}/{$resource}.{$extension}";
 
         if (!file_exists($filename)) {
             throw new NotFoundHttpException();
@@ -135,6 +135,7 @@ class MainController extends AbstractController
                 'pageTitle' => $contentTitle,
                 'meta_description' => "{$contentTitle}",
                 'menu' => $menu,
+                'url_doc' => "https://github.com/thenlabs/doc/blob/master/{$project}/{$branch}/{$locale}/{$fileInfo['filename']}.{$fileInfo['extension']}",
             ]);
         } else {
             return new BinaryFileResponse($filename);

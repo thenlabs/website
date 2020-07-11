@@ -1,2 +1,12 @@
 
 {% extends 'devAid/page.html.twig' %}
+
+{% block before_content %}
+    <div class="row">
+        <div class="col">
+            <div style="float: right; margin-bottom: 20px">
+                <a href="{{ url_doc }}" target="_blank">{{ 'improve_this_doc'|trans }}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
