@@ -21,19 +21,6 @@ easy_admin:
                     - categories
                     - tags
 
-        Page:
-            class: App\Entity\Page
-            form:
-                fields:
-                    - title
-                    - slug
-                    - public
-                    - { property: 'language', type: 'choice', type_options: { choices: { 'Español': 'es', 'English': 'en' } } }
-                    - { property: 'translations', type_options: { by_reference: false } }
-                    - { property: 'content', type: 'code_editor', language: 'markdown' }
-                    - categories
-                    - tags
-
         Image:
             class: App\Entity\Image
             list:
