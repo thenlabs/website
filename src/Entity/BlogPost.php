@@ -91,6 +91,11 @@ class BlogPost
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $ogImage;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -308,6 +313,18 @@ class BlogPost
     public function setUpdated(\DateTimeInterface $updated): self
     {
         $this->updated = $updated;
+
+        return $this;
+    }
+
+    public function getOgImage(): ?string
+    {
+        return $this->ogImage;
+    }
+
+    public function setOgImage(?string $ogImage): self
+    {
+        $this->ogImage = $ogImage;
 
         return $this;
     }

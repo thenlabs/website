@@ -26,7 +26,7 @@
     {% set ogDescription = meta_description %}
 {% endif %}
 
-{% if not ogImage is defined %}
+{% if not ogImage is defined or ogImage is empty %}
     {% set ogImage = absolute_url(asset('preview.png')) %}
 {% endif %}
 

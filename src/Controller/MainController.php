@@ -207,6 +207,7 @@ class MainController extends AbstractController
             'content' => $content,
             'contentTitle' => $title,
             'blogPost' => $blogPost,
+            'ogImage' => $blogPost->getOgImage(),
             'pageTitle' => $title,
             'meta_description' => $ogDescription,
             'ogDescription' => $ogDescription,
