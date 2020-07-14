@@ -49,16 +49,16 @@
     <meta property="og:title" content="{{ ogTitle }}">
     <meta property="og:image" content="{{ ogImage }}">
     <meta property="og:description" content="{{ ogDescription }}">
-    <meta property="fb:app_id" content="1376605832728926">
+    <meta property="fb:app_id" content="{{ facebook_app_id }}">
     {# <link rel="shortcut icon" href="favicon.ico"> #}
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163364401-1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'UA-163364401-1');
+      gtag('config', '{{ google_analytics_id }}');
     </script>
 
     {% block styles %}{% endblock %}

@@ -1,7 +1,9 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
-        twitter_username: ThenLabsOrg
-        twitter_url: https://twitter.com/ThenLabsOrg
-        facebook_url: https://www.facebook.com/ThenLabs-110165223984090/
-        telegram_url: https://t.me/thenlabs
+        twitter_username: 'ThenLabsOrg'
+        twitter_url: 'https://twitter.com/ThenLabsOrg'
+        facebook_url: 'https://www.facebook.com/ThenLabs-110165223984090/'
+        facebook_app_id: '1376605832728926'
+        telegram_url: 'https://t.me/thenlabs'
+        google_analytics_id: 'UA-163364401-1'
