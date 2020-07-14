@@ -11,15 +11,21 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-center" id="donateModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="donateModalLabel" style="margin: 0">Gracias por querer apoyarnos</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+                        {% include 'content/donate-es.html.twig' %}
+                    </div>
+                    <div class="modal-footer">
                         <div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn" data-address="{{ bitcoin_address }}" data-shared="false">
                             <div class="blockchain stage-begin">
-                                <img src="https://blockchain.info/Resources/buttons/donate_64.png" />
+                                <button class="btn btn-info" type="button">
+                                    <i class="fas fa-heart" style="color: red"></i>
+                                    Donar Bitcoins
+                                </button>
                             </div>
                             <div class="blockchain stage-loading" style="text-align:center">
                                 <img src="https://blockchain.info/Resources/loading-large.gif" />
