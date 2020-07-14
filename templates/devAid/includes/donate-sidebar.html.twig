@@ -1,0 +1,43 @@
+<div class="row text-center">
+    <div class="col" style="margin: 25px 0">
+
+        <!-- Button trigger modal -->
+        <a class="btn btn-light" href="javascript:;" data-toggle="modal" data-target="#donateModal">
+            <i class="fas fa-heart" style="color: red"></i> Apoye a ThenLabs
+        </a>
+
+        <!-- Modal -->
+        <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="donateModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn" data-address="{{ bitcoin_address }}" data-shared="false">
+                            <div class="blockchain stage-begin">
+                                <img src="https://blockchain.info/Resources/buttons/donate_64.png" />
+                            </div>
+                            <div class="blockchain stage-loading" style="text-align:center">
+                                <img src="https://blockchain.info/Resources/loading-large.gif" />
+                            </div>
+                            <div class="blockchain stage-ready">
+                                <p align="center">Please Donate To Bitcoin Address: <b>[[address]]</b></p>
+                                <p align="center" class="qr-code"></p>
+                            </div>
+                            <div class="blockchain stage-paid">
+                                Donation of <b>[[value]] BTC</b> Received. Thank You.
+                            </div>
+                            <div class="blockchain stage-error">
+                                <font color="red">[[error]]</font>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -135,6 +135,7 @@ class MainController extends AbstractController
                 'pageTitle' => $contentTitle,
                 'meta_description' => "{$contentTitle}",
                 'menu' => $menu,
+                'donate' => true,
                 'url_doc' => "https://github.com/thenlabs/doc/edit/master/{$project}/{$branch}/{$locale}/{$fileInfo['filename']}.{$fileInfo['extension']}",
             ]);
         } else {
@@ -149,6 +150,7 @@ class MainController extends AbstractController
     {
         return $this->render('devAid/page-blog.html.twig', [
             'posts' => $blogPostRepository->findPublishedPosts($request->getLocale()),
+            // 'donate' => true,
         ]);
     }
 
@@ -212,6 +214,7 @@ class MainController extends AbstractController
             'meta_description' => $ogDescription,
             'ogDescription' => $ogDescription,
             'menu' => $menu,
+            'donate' => true,
             'translations_menu' => $translationsMenu,
         ]);
     }

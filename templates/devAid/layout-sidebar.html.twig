@@ -7,6 +7,10 @@
             <div class="row">
                 <div class="col-lg-3">
                     {% block left_sidebar %}{% endblock %}
+
+                    {% if donate is defined and donate == true %}
+                        {% include 'devAid/includes/donate-sidebar.html.twig' %}
+                    {% endif %}
                 </div>
 
                 <div class="col-lg-9">
