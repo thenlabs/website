@@ -150,7 +150,7 @@ class MainController extends AbstractController
     {
         return $this->render('devAid/page-blog.html.twig', [
             'posts' => $blogPostRepository->findPublishedPosts($request->getLocale()),
-            // 'donate' => true,
+            'donate' => true,
         ]);
     }
 
@@ -237,7 +237,11 @@ class MainController extends AbstractController
             $id = str_replace('í', 'i', $id);
             $id = str_replace('ó', 'o', $id);
             $id = str_replace('ú', 'u', $id);
+            $id = str_replace('Á', 'A', $id);
+            $id = str_replace('É', 'E', $id);
             $id = str_replace('Í', 'I', $id);
+            $id = str_replace('Ó', 'O', $id);
+            $id = str_replace('Ú', 'U', $id);
             $id = strtolower($id);
             $h2->setAttribute('id', $id);
 
