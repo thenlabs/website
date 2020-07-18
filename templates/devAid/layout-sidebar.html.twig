@@ -8,6 +8,8 @@
                 <div class="col-lg-3">
                     {% block left_sidebar %}{% endblock %}
 
+                    {% include 'devAid/includes/ads/sidebar.html.twig' %}
+
                     {% if donate is defined and donate == true %}
                         {% include 'devAid/includes/donate-sidebar.html.twig' %}
                     {% endif %}
