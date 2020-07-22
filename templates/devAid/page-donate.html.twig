@@ -3,4 +3,54 @@
 
 {% block page_content %}
     {% include 'content/donate-' ~ route_parameters._locale ~ '.html.twig' %}
+
+    <div class="row text-center">
+        <div class="col" style="margin: 25px 0">
+
+            <!-- Button trigger modal -->
+            <a class="btn btn-light" href="javascript:;" data-toggle="modal" data-target="#donateModal">
+                <i class="fas fa-heart" style="color: red"></i> {{ 'supports_to_thenlabs'|trans }}
+            </a>
+
+            <!-- Modal -->
+            <div class="modal fade" id="donateModal" tabindex="-1" role="dialog" aria-labelledby="donateModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="donateModalLabel" style="margin: 0">{{ 'thanks_for_wanting_to_support_us'|trans }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {% include 'content/donate-' ~ route_parameters._locale ~ '.html.twig' %}
+                        </div>
+                        <div class="modal-footer">
+                            <div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn" data-address="{{ bitcoin_address }}" data-shared="false">
+                                <div class="blockchain stage-begin">
+                                    <button class="btn btn-info" type="button">
+                                        <i class="fas fa-heart" style="color: red"></i>
+                                        {{ 'donate_bitcoins'|trans }}
+                                    </button>
+                                </div>
+                                <div class="blockchain stage-loading" style="text-align:center">
+                                    <img src="https://blockchain.info/Resources/loading-large.gif" />
+                                </div>
+                                <div class="blockchain stage-ready">
+                                    <p align="center">{{ 'donate_to_bitcoin_address_message'|trans|raw }}</p>
+                                    <p align="center" class="qr-code"></p>
+                                </div>
+                                <div class="blockchain stage-paid">
+                                    {{ 'received_donation_message'|trans|raw }}
+                                </div>
+                                <div class="blockchain stage-error">
+                                    <font color="red">[[error]]</font>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
