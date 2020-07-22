@@ -230,6 +230,7 @@ class MainController extends AbstractController
             'ogDescription' => $ogDescription,
             'menu' => $menu,
             'donate' => true,
+            'comments' => true,
             'translations_menu' => $translationsMenu,
         ]);
     }
