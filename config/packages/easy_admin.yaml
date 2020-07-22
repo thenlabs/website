@@ -51,3 +51,6 @@ easy_admin:
 
         User:
             class: App\Entity\User
+
+        Invoice:
+            class: App\Entity\Invoice
