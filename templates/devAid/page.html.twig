@@ -61,7 +61,9 @@
 
         <h1 class="title text-center">{{ contentTitle }}</h1>
 
-        {{ content|raw }}
+        {% block page_content %}
+            {{ content|raw }}
+        {% endblock %}
 
         {% block after_content %}{% endblock %}
 

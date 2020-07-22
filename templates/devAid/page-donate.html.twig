@@ -1,0 +1,6 @@
+
+{% extends 'devAid/page.html.twig' %}
+
+{% block page_content %}
+    {% include 'content/donate-' ~ route_parameters._locale ~ '.html.twig' %}
+{% endblock %}
