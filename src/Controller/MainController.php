@@ -86,20 +86,20 @@ class MainController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/donate", name="donate")
-     */
-    public function donate(Request $request, TranslatorInterface $translator)
-    {
-        $title = $translator->trans('donate_title');
-        $content = $this->renderView("content/donate-{$request->getLocale()}.html.twig");
+    // /**
+    //  * @Route("/donate", name="donate")
+    //  */
+    // public function donate(Request $request, TranslatorInterface $translator)
+    // {
+    //     $title = $translator->trans('donate_title');
+    //     $content = $this->renderView("content/donate-{$request->getLocale()}.html.twig");
 
-        return $this->render('devAid/page-donate.html.twig', [
-            'content' => $content,
-            'contentTitle' => $title,
-            'pageTitle' => $title,
-        ]);
-    }
+    //     return $this->render('devAid/page-donate.html.twig', [
+    //         'content' => $content,
+    //         'contentTitle' => $title,
+    //         'pageTitle' => $title,
+    //     ]);
+    // }
 
     /**
      * @Route("/doc/{project}/{branch}/{resource}.{extension}", name="doc", requirements={"resource"=".+"})
@@ -150,7 +150,7 @@ class MainController extends AbstractController
                 'pageTitle' => $contentTitle,
                 'meta_description' => "{$contentTitle}",
                 'menu' => $menu,
-                'donate' => true,
+                'donate' => false,
                 'url_doc' => "https://github.com/thenlabs/doc/edit/master/{$project}/{$branch}/{$locale}/{$fileInfo['filename']}.{$fileInfo['extension']}",
             ]);
         } else {
@@ -165,7 +165,7 @@ class MainController extends AbstractController
     {
         return $this->render('devAid/page-blog.html.twig', [
             'posts' => $blogPostRepository->findPublishedPosts($request->getLocale()),
-            'donate' => true,
+            'donate' => false,
         ]);
     }
 
@@ -229,7 +229,7 @@ class MainController extends AbstractController
             'meta_description' => $ogDescription,
             'ogDescription' => $ogDescription,
             'menu' => $menu,
-            'donate' => true,
+            'donate' => false,
             'comments' => true,
             'translations_menu' => $translationsMenu,
         ]);
