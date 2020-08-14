@@ -86,20 +86,20 @@ class MainController extends AbstractController
         ]);
     }
 
-    // /**
-    //  * @Route("/donate", name="donate")
-    //  */
-    // public function donate(Request $request, TranslatorInterface $translator)
-    // {
-    //     $title = $translator->trans('donate_title');
-    //     $content = $this->renderView("content/donate-{$request->getLocale()}.html.twig");
+    /**
+     * @Route("/donate", name="donate")
+     */
+    public function donate(Request $request, TranslatorInterface $translator)
+    {
+        $title = $translator->trans('donate_title');
+        $content = $this->renderView("content/donate-{$request->getLocale()}.html.twig");
 
-    //     return $this->render('devAid/page-donate.html.twig', [
-    //         'content' => $content,
-    //         'contentTitle' => $title,
-    //         'pageTitle' => $title,
-    //     ]);
-    // }
+        return $this->render('devAid/page-donate.html.twig', [
+            'content' => $content,
+            'contentTitle' => $title,
+            'pageTitle' => $title,
+        ]);
+    }
 
     /**
      * @Route("/doc/{project}/{branch}/{resource}.{extension}", name="doc", requirements={"resource"=".+"})
