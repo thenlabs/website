@@ -8,3 +8,4 @@ twig:
         telegram_url: 'https://t.me/thenlabs'
         google_analytics_id: 'UA-163364401-1'
         bitcoin_address: '1NRx7EobfuLxpX4gjkGwYUEtRxAgTNXZYo'
+        github_profile: 'https://github.com/thenlabs'
