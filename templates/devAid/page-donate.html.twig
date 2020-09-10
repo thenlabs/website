@@ -4,7 +4,7 @@
 {% block page_content %}
     {% include 'content/donate-' ~ route_parameters._locale ~ '.html.twig' %}
 
-    <div class="row text-center">
+    {# <div class="row text-center">
         <div class="col" style="margin: 25px 0">
             <div style="font-size:16px;margin:0 auto;width:300px" class="blockchain-btn" data-address="{{ bitcoin_address }}" data-shared="false">
                 <div class="blockchain stage-begin">
@@ -28,10 +28,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> #}
 {% endblock %}
 
-{% block scripts %}
+{# {% block scripts %}
     {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function() {
@@ -130,4 +130,4 @@
             });
         });
     </script>
-{% endblock %}
+{% endblock %} #}

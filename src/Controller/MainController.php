@@ -93,7 +93,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/donate", name="donate")
+     * @Route("/supports-stratus-php", name="donate")
      */
     public function donate(Request $request, TranslatorInterface $translator)
     {
