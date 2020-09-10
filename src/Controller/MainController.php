@@ -71,7 +71,7 @@ class MainController extends AbstractController
                     'li_class' => 'nav-item',
                     'a_class' => 'nav-link',
                     'href' => $this->generateUrl('contribute'),
-                    'text' => $translator->trans('contribute_title'),
+                    'text' => $translator->trans('contribute'),
                 ],
             ],
         ]);
@@ -278,13 +278,9 @@ class MainController extends AbstractController
      */
     public function contribute(Request $request, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
-        $title = $translator->trans('contribute_title');
-
-        // $filename = __DIR__.'/../../templates/content/contribute-es.md';
-        // $content = $parser->transformMarkdown(file_get_contents($filename));
+        $title = $translator->trans('contribute');
 
         return $this->render('devAid/page-contribute.html.twig', [
-            // 'content' => $content,
             'contentTitle' => $title,
             'pageTitle' => $title,
         ]);
