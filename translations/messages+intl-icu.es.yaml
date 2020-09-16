@@ -38,3 +38,4 @@ donate_title: 'Apoye el desarrollo de StratusPHP.'
 contribute: Contribuir
 project.description.stratus_php: 'Framework PHP para crear aplicaciones de una sola página (SPA).'
 new: Nuevo
+project.description.website: 'El proyecto de este sitio web basado en Symfony.'
