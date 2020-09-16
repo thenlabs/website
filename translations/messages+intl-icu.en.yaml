@@ -35,3 +35,6 @@ donate_bitcoins: 'Donate bitcoins'
 donate_to_bitcoin_address_message: 'Please Donate To Bitcoin Address: <b>[[address]]</b>'
 received_donation_message: 'Donation of <b>[[value]] BTC</b> Received. Thank You.'
 donate_title: 'Supports the development of the StratusPHP.'
+contribute: Contribute
+project.description.stratus_php: 'PHP framework for creating single page applications.'
+new: New
