@@ -39,3 +39,4 @@ contribute: Contribute
 project.description.stratus_php: 'PHP framework for creating single page applications.'
 new: New
 project.description.website: 'The project of this website based on Symfony.'
+project.description.http_server: 'A HTTP Server written in PHP with help of the Symfony components.'
