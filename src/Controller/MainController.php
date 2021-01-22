@@ -279,8 +279,9 @@ class MainController extends AbstractController
     public function contribute(Request $request, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
         $title = $translator->trans('contribute');
+        $locale = $request->getLocale();
 
-        return $this->render('devAid/page-contribute.html.twig', [
+        return $this->render("devAid/page-contribute-{$locale}.html.twig", [
             'contentTitle' => $title,
             'pageTitle' => $title,
         ]);

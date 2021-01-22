@@ -1,0 +1,156 @@
+
+{% extends 'devAid/page.html.twig' %}
+
+{% block page_content %}
+    <p>First of all we want to thank you for your intention of wanting to contribute to our project since if you are reading this page you have surely been motivated to do so in some way.</p>
+
+    <p>As you will see below, there are several ways you can collaborate with ThenLabs and in all cases we will greatly appreciate the support received.</p>
+
+    <h5 id="ideas">1. Propose ideas and opinions.</h5>
+    <p>All messages we receive from users will be taken into account by us. It does not matter if it is a criticism, idea or suggestion. In any case we are going to get the best out of it with the aim of getting better and better.</p>
+    <p>To contact us you can write to us at the email address that we show at the bottom of this page.</p>
+
+    <h5 id="share">2. Share our articles on social networks.</h5>
+    <p>Another way in which users can help us is by sharing our articles on their social networks. In this way, many more users will be able to get to know us and this will allow us to grow as a community.</p>
+    <p>So that you can find out about all our new publications, you can subscribe to our social profiles which can also be found at the bottom of this page.</p>
+
+    <h5 id="coding">3. Contribute source code.</h5>
+    <p>In the case of users with programming knowledge, they could <strong> use our projects to help us discover and / or correct new bugs </strong>, as well as <strong> propose new features </strong> that contribute to improving projects in general.</p>
+    <p>Since our reason for being is open source software, all of our projects (including this site) can be found on our <a href="{{ github_profile }}"> GitHub </a> profile. Feel free to make use of them.</p>
+
+    <h5 id="money">4. Make a monetary contribution.</h5>
+    <p>All the work we have done so far has been in our free time as ThenLabs is a very recently created venture and we are not yet able to get involved full time.</p>
+    <p>Due to the fact that lately our free time is insufficient to advance at the required speed, we have opened the possibility of receiving monetary donations with the aim of being able to dedicate more time to the project.</p>
+    <p>On this issue of fundraising, we want to tell you that ThenLabs is an undertaking created by independent Cuban programmers and at the moment we only have the following alternatives for money transfers that users may want to do.</p>
+    <ol>
+        <li><a href="https://www.tropipay.com/money-request/7162bd40-f82b-11ea-af64-0d17f38bfa12">Donation of 6 euros through Tropipay.</a></li>
+        <li><a href="https://www.tropipay.com/money-request/ce985a40-f391-11ea-ba85-43e971b10b3a">Donation of 12 euros through Tropipay.</a></li>
+        <li><a href="https://www.tropipay.com/money-request/159989a0-f392-11ea-ba85-43e971b10b3a">Donation of 24 euros through Tropipay.</a></li>
+        <li>
+            <div class="row">
+                <div class="col">
+                    <div class="blockchain-btn" data-address="{{ bitcoin_address }}" data-shared="false">
+                        <div class="blockchain stage-begin">
+                            <a href="javascript:;">{{ 'donate_bitcoins'|trans }}</a>
+                        </div>
+                        <div class="blockchain stage-loading" style="text-align:center">
+                            <img src="https://blockchain.info/Resources/loading-large.gif" />
+                        </div>
+                        <div class="blockchain stage-ready">
+                            <p align="center">{{ 'donate_to_bitcoin_address_message'|trans|raw }}</p>
+                            <p align="center" class="qr-code"></p>
+                        </div>
+                        <div class="blockchain stage-paid">
+                            {{ 'received_donation_message'|trans|raw }}
+                        </div>
+                        <div class="blockchain stage-error">
+                            <font color="red">[[error]]</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ol>
+    <p>Thank you very much!</p>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var root = "https://blockchain.info/";
+            var buttons = $('.blockchain-btn');
+
+            buttons.find('.blockchain').hide();
+            buttons.find('.stage-begin').trigger('show').show();
+
+            buttons.each(function(index) {
+                var _button = $(this);
+
+                (function() {
+                    var button = _button;
+
+                    button.click(function() {
+                        var test = $(this).data('test');
+
+                        button.find('.blockchain').hide();
+                        button.find('.stage-loading').trigger('show').show();
+                        button.find('.qr-code').empty();
+
+                        $.getJSON('{{ path("invoice_address") }}', {}, (response) => {
+                            var receivers_address = response.address;
+
+                            function checkBalance() {
+                                $.ajax({
+                                    type: "GET",
+                                    url: root + 'q/getreceivedbyaddress/' + receivers_address +
+                                        '?start_time=' + (new Date).getTime(),
+                                    data: { format: 'plain' },
+                                    success: function(response) {
+                                        if (!response) return;
+
+                                        var value = parseInt(response);
+
+                                        if (value > 0 || test) {
+                                            button.find('.blockchain').hide();
+                                            button.find('.stage-paid').trigger('show').show().html(button.find('.stage-paid').html().replace('[[value]]', value / 100000000));
+                                        } else {
+                                            setTimeout(checkBalance, 5000);
+                                        }
+                                    }
+                                });
+                            }
+
+                            try {
+                                ws = new WebSocket('wss://ws.blockchain.info/inv');
+
+                                if (!ws) return;
+
+                                ws.onmessage = function(e) {
+                                    try {
+                                        var obj = $.parseJSON(e.data);
+
+                                        if (obj.op == 'utx') {
+                                            var tx = obj.x;
+
+                                            var result = 0;
+                                            for (var i = 0; i < tx.out.length; i++) {
+                                                var output = tx.out[i];
+
+                                                if (output.addr == receivers_address) {
+                                                    result += parseInt(output.value);
+                                                }
+                                            }
+                                        }
+
+                                        button.find('.blockchain').hide();
+                                        button.find('.stage-paid').trigger('show').show().html(button.find('.stage-paid').html().replace('[[value]]', result / 100000000));
+
+                                        ws.close();
+                                    } catch (e) {
+                                        console.log(e);
+
+                                        console.log(e.data);
+                                    }
+                                };
+
+                                ws.onopen = function() {
+                                    ws.send('{"op":"addr_sub", "addr":"' + receivers_address + '"}');
+                                };
+                            } catch (e) {
+                                console.log(e);
+                            }
+
+                            button.find('.stage-ready').trigger('show').show().html(button.find('.stage-ready').html().replace('[[address]]', receivers_address));
+                            button.find('.qr-code').html('<img style="margin:5px" src="' + root + 'qr?data=' + receivers_address + '&size=125">');
+                            button.unbind();
+
+                            // Check for incoming payment
+                            setTimeout(checkBalance, 5000);
+                        });
+                    });
+                })();
+            });
+        });
+    </script>
+{% endblock %}
