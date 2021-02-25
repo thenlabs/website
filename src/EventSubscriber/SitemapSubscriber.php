@@ -3,8 +3,11 @@
 namespace App\EventSubscriber;
 
 use App\Repository\BlogPostRepository;
+use App\Controller\MainController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
 use Presta\SitemapBundle\Service\UrlContainerInterface;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
@@ -22,13 +25,19 @@ class SitemapSubscriber implements EventSubscriberInterface
     private $blogPostRepository;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
      * @param UrlGeneratorInterface $urlGenerator
      * @param BlogPostRepository    $blogPostRepository
      */
-    public function __construct(UrlGeneratorInterface $urlGenerator, BlogPostRepository $blogPostRepository)
+    public function __construct(UrlGeneratorInterface $urlGenerator, BlogPostRepository $blogPostRepository, TranslatorInterface $translator)
     {
         $this->urlGenerator = $urlGenerator;
         $this->blogPostRepository = $blogPostRepository;
+        $this->translator = $translator;
     }
 
     /**
@@ -76,5 +85,13 @@ class SitemapSubscriber implements EventSubscriberInterface
      */
     public function registerProjectDocsUrls(UrlContainerInterface $urls): void
     {
+        $projects = MainController::getProjects($this->translator, $this->urlGenerator);
+
+        foreach ($projects as $project) {
+            $urls->addUrl(
+                new UrlConcrete($project['url']),
+                'doc'
+            );
+        }
     }
 }

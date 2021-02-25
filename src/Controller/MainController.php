@@ -311,7 +311,11 @@ class MainController extends AbstractController
                     ['class' => 'danger', 'text' => $translator->trans('new')],
                 ],
                 'description' => $translator->trans('project.description.stratus_php'),
-                'url' => $router->generate('doc', ['project' => 'stratus-php', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+                'url' => $router->generate(
+                    'doc',
+                    ['project' => 'stratus-php', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
             ],
 
             'composed-views' => [
@@ -321,7 +325,11 @@ class MainController extends AbstractController
                     ['class' => 'success', 'text' => 'Framework'],
                 ],
                 'description' => $translator->trans('project.description.composed_views'),
-                'url' => $router->generate('doc', ['project' => 'composed-views', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+                'url' => $router->generate(
+                    'doc',
+                    ['project' => 'composed-views', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
             ],
 
             'pyramidal-tests' => [
@@ -332,7 +340,11 @@ class MainController extends AbstractController
                     ['class' => 'warning', 'text' => $translator->trans('Previous')],
                 ],
                 'description' => $translator->trans('project.description.pyramidal_tests'),
-                'url' => $router->generate('doc', ['project' => 'pyramidal-tests', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+                'url' => $router->generate(
+                    'doc',
+                    ['project' => 'pyramidal-tests', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
             ],
 
             'components' => [
@@ -341,7 +353,11 @@ class MainController extends AbstractController
                     ['class' => 'info', 'text' => 'PHP'],
                 ],
                 'description' => $translator->trans('project.description.components'),
-                'url' => $router->generate('doc', ['project' => 'components', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+                'url' => $router->generate(
+                    'doc',
+                    ['project' => 'components', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
             ],
 
             'class-builder' => [
@@ -350,7 +366,11 @@ class MainController extends AbstractController
                     ['class' => 'info', 'text' => 'PHP'],
                 ],
                 'description' => $translator->trans('project.description.class_builder'),
-                'url' => $router->generate('doc', ['project' => 'class-builder', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+                'url' => $router->generate(
+                    'doc',
+                    ['project' => 'class-builder', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
             ],
 
             'cli' => [
@@ -359,7 +379,11 @@ class MainController extends AbstractController
                     ['class' => 'info', 'text' => 'PHP'],
                 ],
                 'description' => $translator->trans('project.description.then_cli'),
-                'url' => $router->generate('doc', ['project' => 'cli', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+                'url' => $router->generate(
+                    'doc',
+                    ['project' => 'cli', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
             ],
 
             'glue-php' => [
