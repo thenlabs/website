@@ -43,6 +43,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ meta_description }}">
     <meta name="author" content="ThenLabs">
+
     <meta property="og:site_name" content="ThenLabs">
     <meta property="og:url" content="{{ ogUrl }}">
     <meta property="og:type" content="{{ ogType }}">
@@ -50,6 +51,7 @@
     <meta property="og:image" content="{{ ogImage }}">
     <meta property="og:description" content="{{ ogDescription }}">
     <meta property="fb:app_id" content="{{ facebook_app_id }}">
+
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
@@ -62,6 +64,12 @@
     </script>
 
     {% block styles %}{% endblock %}
+
+    {% if hrefLangs is defined %}
+        {% for hrefLang in hrefLangs %}
+            <link rel="alternate" href="{{ hrefLang.url }}" hreflang="{{ hrefLang.lang }}" />
+        {% endfor %}
+    {% endif %}
 </head>
 
 <body data-spy="scroll">

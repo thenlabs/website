@@ -27,6 +27,8 @@ use Wa72\HtmlPageDom\HtmlPageCrawler;
  */
 class MainController extends AbstractController
 {
+    const LANGUAGES = ['en', 'es'];
+
     /**
      * @Route("/", name="index")
      */
@@ -36,6 +38,7 @@ class MainController extends AbstractController
 
         return $this->render('devAid/page-index.html.twig', [
             'posts' => $posts,
+            'hrefLangs' => $this->getHrefLangs('index', []),
             'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',
@@ -285,5 +288,21 @@ class MainController extends AbstractController
             'contentTitle' => $title,
             'pageTitle' => $title,
         ]);
+    }
+
+    private function getHrefLangs(string $routeName, array $args): array
+    {
+        $result = [];
+
+        foreach (self::LANGUAGES as $lang) {
+            $arguments = array_merge($args, ['_locale' => $lang]);
+
+            $result[] = [
+                'lang' => $lang,
+                'url' => $this->generateUrl($routeName, $arguments, UrlGeneratorInterface::ABSOLUTE_URL),
+            ];
+        }
+
+        return $result;
     }
 }
