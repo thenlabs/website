@@ -27,8 +27,6 @@ use Wa72\HtmlPageDom\HtmlPageCrawler;
  */
 class MainController extends AbstractController
 {
-    const LANGUAGES = ['en', 'es'];
-
     /**
      * @Route("/", name="index")
      */
@@ -92,21 +90,7 @@ class MainController extends AbstractController
             'content' => $content,
             'contentTitle' => $title,
             'pageTitle' => $title,
-        ]);
-    }
-
-    /**
-     * @Route("/supports-stratus-php", name="donate")
-     */
-    public function donate(Request $request, TranslatorInterface $translator)
-    {
-        $title = $translator->trans('donate_title');
-        $content = $this->renderView("content/donate-{$request->getLocale()}.html.twig");
-
-        return $this->render('devAid/page-donate.html.twig', [
-            'content' => $content,
-            'contentTitle' => $title,
-            'pageTitle' => $title,
+            'hrefLangs' => $this->getHrefLangs('about', []),
         ]);
     }
 
@@ -161,6 +145,7 @@ class MainController extends AbstractController
                 'menu' => $menu,
                 'donate' => true,
                 'url_doc' => "https://github.com/thenlabs/doc/edit/master/{$project}/{$branch}/{$locale}/{$fileInfo['filename']}.{$fileInfo['extension']}",
+                'hrefLangs' => $this->getHrefLangs('doc', compact('project', 'branch', 'resource', 'extension')),
             ]);
         } else {
             return new BinaryFileResponse($filename);
@@ -175,6 +160,7 @@ class MainController extends AbstractController
         return $this->render('devAid/page-blog.html.twig', [
             'posts' => $blogPostRepository->findPublishedPosts($request->getLocale()),
             'donate' => true,
+            'hrefLangs' => $this->getHrefLangs('blog', []),
         ]);
     }
 
@@ -182,7 +168,7 @@ class MainController extends AbstractController
      * @Route("/blog/{slug}.html", name="blogPost")
      * @ParamConverter("post", class="App\Entity\BlogPost")
      */
-    public function blogPost(BlogPost $blogPost, MarkdownParserInterface $parser, TranslatorInterface $translator)
+    public function blogPost(BlogPost $blogPost, Request $request, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
         if (!$blogPost->isPublic()) {
             throw new NotFoundHttpException();
@@ -202,9 +188,12 @@ class MainController extends AbstractController
         $translationsMenu = [];
         $publicationDateStr = $translator->trans('publication_date');
 
+        $languages = [$request->getLocale()];
+
         foreach ($blogPost->getTranslations() as $translation) {
             $text = '';
             $language = $translation->getLanguage();
+            $languages[] = $language;
 
             switch ($language) {
                 case 'es':
@@ -241,10 +230,26 @@ class MainController extends AbstractController
             'donate' => true,
             'comments' => true,
             'translations_menu' => $translationsMenu,
+            'hrefLangs' => $this->getHrefLangs('blogPost', ['slug' => $blogPost->getSlug()], $languages),
         ]);
     }
 
-    public function getMenu($content)
+    /**
+     * @Route("/contribute", name="contribute")
+     */
+    public function contribute(Request $request, MarkdownParserInterface $parser, TranslatorInterface $translator)
+    {
+        $title = $translator->trans('contribute');
+        $locale = $request->getLocale();
+
+        return $this->render("devAid/page-contribute-{$locale}.html.twig", [
+            'contentTitle' => $title,
+            'pageTitle' => $title,
+            'hrefLangs' => $this->getHrefLangs('contribute', []),
+        ]);
+    }
+
+    private function getMenu($content)
     {
         $menu = [];
 
@@ -276,25 +281,11 @@ class MainController extends AbstractController
         return $menu;
     }
 
-    /**
-     * @Route("/contribute", name="contribute")
-     */
-    public function contribute(Request $request, MarkdownParserInterface $parser, TranslatorInterface $translator)
-    {
-        $title = $translator->trans('contribute');
-        $locale = $request->getLocale();
-
-        return $this->render("devAid/page-contribute-{$locale}.html.twig", [
-            'contentTitle' => $title,
-            'pageTitle' => $title,
-        ]);
-    }
-
-    private function getHrefLangs(string $routeName, array $args): array
+    private function getHrefLangs(string $routeName, array $args, array $languages = ['en', 'es']): array
     {
         $result = [];
 
-        foreach (self::LANGUAGES as $lang) {
+        foreach ($languages as $lang) {
             $arguments = array_merge($args, ['_locale' => $lang]);
 
             $result[] = [
