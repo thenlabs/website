@@ -60,7 +60,10 @@
             <h2 class="title text-center">{{ 'Projects'|trans }}</h2>
             <p class="intro text-center">{{ 'section.description.projects'|trans }}</p>
             <div class="row">
-                <div class="item col-lg-4 col-md-6 col-12">
+                {% for project in projects %}
+                    {% include('devAid/includes/project.html.twig') with {project: project} %}
+                {% endfor %}
+                {# <div class="item col-lg-4 col-md-6 col-12">
                     <div class="content">
                         <h3 class="sub-title">StratusPHP</h3>
                         <div>
@@ -104,8 +107,6 @@
                     </div><!--//content-->
                 </div><!--//item-->
 
-                {# <div class="clearfix visible-md"></div> #}
-
                 <div class="item col-lg-4 col-md-6 col-12">
                     <div class="content">
                         <h3 class="sub-title">Components</h3>
@@ -144,8 +145,6 @@
                         </div>
                     </div><!--//content-->
                 </div><!--//item-->
-
-                {# <div class="clearfix visible-md"></div> #}
 
                 <div class="item col-lg-4 col-md-6 col-12">
                     <div class="content">
@@ -187,7 +186,7 @@
                             <a href="https://github.com/thenlabs/http-server" class="btn btn-secondary btn-sm" target="_blank">{{ 'View Project'|trans }}</a>
                         </div>
                     </div><!--//content-->
-                </div><!--//item-->
+                </div><!--//item--> #}
             </div><!--//row-->
         </div><!--//container-->
     </section><!--//about-->

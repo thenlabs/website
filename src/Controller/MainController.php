@@ -8,12 +8,14 @@ use App\Repository\BlogPostRepository;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
 
@@ -28,15 +30,16 @@ use Wa72\HtmlPageDom\HtmlPageCrawler;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/", name="index", options={"sitemap" = true})
      */
-    public function index(Request $request, BlogPostRepository $blogPostRepository, TranslatorInterface $translator)
+    public function index(Request $request, BlogPostRepository $blogPostRepository, TranslatorInterface $translator, RouterInterface $router)
     {
         $posts = $blogPostRepository->findPublishedPosts($request->getLocale());
 
         return $this->render('devAid/page-index.html.twig', [
             'posts' => $posts,
             'hrefLangs' => $this->getHrefLangs('index', []),
+            'projects' => self::getProjects($translator, $router),
             'navigation' => [
                 [
                     'li_class' => 'nav-item sr-only',
@@ -79,7 +82,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/about", name="about")
+     * @Route("/about", name="about", options={"sitemap" = true})
      */
     public function about(Request $request, TranslatorInterface $translator)
     {
@@ -153,7 +156,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/blog", name="blog")
+     * @Route("/blog", name="blog", options={"sitemap" = true})
      */
     public function blog(Request $request, BlogPostRepository $blogPostRepository)
     {
@@ -235,7 +238,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/contribute", name="contribute")
+     * @Route("/contribute", name="contribute", options={"sitemap" = true})
      */
     public function contribute(Request $request, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
@@ -295,5 +298,21 @@ class MainController extends AbstractController
         }
 
         return $result;
+    }
+
+    public static function getProjects(TranslatorInterface $translator, RouterInterface $router): array
+    {
+        return [
+            'stratus-php' => [
+                'name' => 'StratusPHP',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                    ['class' => 'success', 'text' => 'Framework'],
+                    ['class' => 'danger', 'text' => $translator->trans('new')],
+                ],
+                'description' => $translator->trans('project.description.stratus_php'),
+                'url' => $router->generate('doc', ['project' => 'stratus-php', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+            ],
+        ];
     }
 }

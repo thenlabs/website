@@ -1,0 +1,14 @@
+<div class="item col-lg-4 col-md-6 col-12">
+    <div class="content">
+        <h3 class="sub-title">{{ project.name }}</h3>
+        <div>
+            {% for tag in project.tags %}
+                <span class="badge badge-{{ tag.class }}">{{ tag.text }}</span>
+            {% endfor %}
+        </div>
+        <p>{{ project.description }}</p>
+        <div>
+            <a href="{{ project.url }}" class="btn btn-secondary btn-sm">{{ 'View Project'|trans }}</a>
+        </div>
+    </div><!--//content-->
+</div><!--//item-->
