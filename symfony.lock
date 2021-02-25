@@ -130,6 +130,9 @@
             ".php_cs.dist"
         ]
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.3"
+    },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.41"
     },
@@ -465,6 +468,9 @@
     },
     "symfony/property-info": {
         "version": "v5.0.3"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v5.2.3"
     },
     "symfony/routing": {
         "version": "4.2",
