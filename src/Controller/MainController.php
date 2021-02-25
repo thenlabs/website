@@ -313,6 +313,84 @@ class MainController extends AbstractController
                 'description' => $translator->trans('project.description.stratus_php'),
                 'url' => $router->generate('doc', ['project' => 'stratus-php', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
             ],
+
+            'composed-views' => [
+                'name' => 'ComposedViews',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                    ['class' => 'success', 'text' => 'Framework'],
+                ],
+                'description' => $translator->trans('project.description.composed_views'),
+                'url' => $router->generate('doc', ['project' => 'composed-views', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+            ],
+
+            'pyramidal-tests' => [
+                'name' => 'PyramidalTests',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                    ['class' => 'success', 'text' => 'Framework'],
+                    ['class' => 'warning', 'text' => $translator->trans('Previous')],
+                ],
+                'description' => $translator->trans('project.description.pyramidal_tests'),
+                'url' => $router->generate('doc', ['project' => 'pyramidal-tests', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+            ],
+
+            'components' => [
+                'name' => 'Components',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                ],
+                'description' => $translator->trans('project.description.components'),
+                'url' => $router->generate('doc', ['project' => 'components', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+            ],
+
+            'class-builder' => [
+                'name' => 'ClassBuilder',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                ],
+                'description' => $translator->trans('project.description.class_builder'),
+                'url' => $router->generate('doc', ['project' => 'class-builder', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+            ],
+
+            'cli' => [
+                'name' => 'CLI',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                ],
+                'description' => $translator->trans('project.description.then_cli'),
+                'url' => $router->generate('doc', ['project' => 'cli', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html']),
+            ],
+
+            'glue-php' => [
+                'name' => 'GluePHP',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                    ['class' => 'success', 'text' => 'Framework'],
+                    ['class' => 'warning', 'text' => $translator->trans('Previous')],
+                    ['class' => 'warning', 'text' => $translator->trans('Abandoned')],
+                ],
+                'description' => $translator->trans('project.description.glue_php'),
+                'url' => 'https://gluephp.readthedocs.io/es/latest/index.html',
+            ],
+
+            'website' => [
+                'name' => 'Website',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                ],
+                'description' => $translator->trans('project.description.website'),
+                'url' => 'https://github.com/thenlabs/website',
+            ],
+
+            'http-server' => [
+                'name' => 'HttpServer',
+                'tags' => [
+                    ['class' => 'info', 'text' => 'PHP'],
+                ],
+                'description' => $translator->trans('project.description.http_server'),
+                'url' => 'https://github.com/thenlabs/http-server',
+            ],
         ];
     }
 }
