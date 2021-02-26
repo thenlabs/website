@@ -38,7 +38,6 @@ class MainController extends AbstractController
 
         return $this->render('devAid/page-index.html.twig', [
             'posts' => $posts,
-            'hrefLangs' => $this->getHrefLangs('index', []),
             'projects' => self::getProjects($translator, $router),
             'navigation' => [
                 [
@@ -93,7 +92,6 @@ class MainController extends AbstractController
             'content' => $content,
             'contentTitle' => $title,
             'pageTitle' => $title,
-            'hrefLangs' => $this->getHrefLangs('about', []),
         ]);
     }
 
@@ -148,7 +146,6 @@ class MainController extends AbstractController
                 'menu' => $menu,
                 'donate' => true,
                 'url_doc' => "https://github.com/thenlabs/doc/edit/master/{$project}/{$branch}/{$locale}/{$fileInfo['filename']}.{$fileInfo['extension']}",
-                'hrefLangs' => $this->getHrefLangs('doc', compact('project', 'branch', 'resource', 'extension')),
             ]);
         } else {
             return new BinaryFileResponse($filename);
@@ -163,7 +160,6 @@ class MainController extends AbstractController
         return $this->render('devAid/page-blog.html.twig', [
             'posts' => $blogPostRepository->findPublishedPosts($request->getLocale()),
             'donate' => true,
-            'hrefLangs' => $this->getHrefLangs('blog', []),
         ]);
     }
 
@@ -233,7 +229,6 @@ class MainController extends AbstractController
             'donate' => true,
             'comments' => true,
             'translations_menu' => $translationsMenu,
-            'hrefLangs' => $this->getHrefLangs('blogPost', ['slug' => $blogPost->getSlug()], $languages),
         ]);
     }
 
@@ -248,7 +243,6 @@ class MainController extends AbstractController
         return $this->render("devAid/page-contribute-{$locale}.html.twig", [
             'contentTitle' => $title,
             'pageTitle' => $title,
-            'hrefLangs' => $this->getHrefLangs('contribute', []),
         ]);
     }
 
@@ -282,22 +276,6 @@ class MainController extends AbstractController
         });
 
         return $menu;
-    }
-
-    private function getHrefLangs(string $routeName, array $args, array $languages = ['en', 'es']): array
-    {
-        $result = [];
-
-        foreach ($languages as $lang) {
-            $arguments = array_merge($args, ['_locale' => $lang]);
-
-            $result[] = [
-                'lang' => $lang,
-                'url' => $this->generateUrl($routeName, $arguments, UrlGeneratorInterface::ABSOLUTE_URL),
-            ];
-        }
-
-        return $result;
     }
 
     public static function getProjects(TranslatorInterface $translator, RouterInterface $router): array

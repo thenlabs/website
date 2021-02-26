@@ -64,12 +64,6 @@
     </script>
 
     {% block styles %}{% endblock %}
-
-    {% if hrefLangs is defined %}
-        {% for hrefLang in hrefLangs %}
-            <link rel="alternate" href="{{ hrefLang.url }}" hreflang="{{ hrefLang.lang }}" />
-        {% endfor %}
-    {% endif %}
 </head>
 
 <body data-spy="scroll">
