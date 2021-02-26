@@ -316,6 +316,7 @@ class MainController extends AbstractController
                     ['project' => 'stratus-php', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
+                'sitemap' => true,
             ],
 
             'composed-views' => [
@@ -330,6 +331,7 @@ class MainController extends AbstractController
                     ['project' => 'composed-views', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
+                'sitemap' => true,
             ],
 
             'pyramidal-tests' => [
@@ -345,6 +347,7 @@ class MainController extends AbstractController
                     ['project' => 'pyramidal-tests', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
+                'sitemap' => true,
             ],
 
             'components' => [
@@ -358,6 +361,7 @@ class MainController extends AbstractController
                     ['project' => 'components', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
+                'sitemap' => true,
             ],
 
             'class-builder' => [
@@ -371,6 +375,7 @@ class MainController extends AbstractController
                     ['project' => 'class-builder', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
+                'sitemap' => true,
             ],
 
             'cli' => [
@@ -384,6 +389,7 @@ class MainController extends AbstractController
                     ['project' => 'cli', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
+                'sitemap' => true,
             ],
 
             'glue-php' => [
@@ -396,6 +402,7 @@ class MainController extends AbstractController
                 ],
                 'description' => $translator->trans('project.description.glue_php'),
                 'url' => 'https://gluephp.readthedocs.io/es/latest/index.html',
+                'sitemap' => false,
             ],
 
             'website' => [
@@ -405,6 +412,7 @@ class MainController extends AbstractController
                 ],
                 'description' => $translator->trans('project.description.website'),
                 'url' => 'https://github.com/thenlabs/website',
+                'sitemap' => false,
             ],
 
             'http-server' => [
@@ -414,6 +422,7 @@ class MainController extends AbstractController
                 ],
                 'description' => $translator->trans('project.description.http_server'),
                 'url' => 'https://github.com/thenlabs/http-server',
+                'sitemap' => false,
             ],
         ];
     }

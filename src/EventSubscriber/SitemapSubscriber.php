@@ -88,10 +88,12 @@ class SitemapSubscriber implements EventSubscriberInterface
         $projects = MainController::getProjects($this->translator, $this->urlGenerator);
 
         foreach ($projects as $project) {
-            $urls->addUrl(
-                new UrlConcrete($project['url']),
-                'doc'
-            );
+            if (true === $project['sitemap']) {
+                $urls->addUrl(
+                    new UrlConcrete($project['url']),
+                    'doc'
+                );
+            }
         }
     }
 }
