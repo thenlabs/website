@@ -30,7 +30,7 @@ use Wa72\HtmlPageDom\HtmlPageCrawler;
 class MainController extends AbstractController
 {
     /**
-     * @Route("/", name="index", options={"sitemap" = true})
+     * @Route("/", name="index")
      */
     public function index(Request $request, BlogPostRepository $blogPostRepository, TranslatorInterface $translator, RouterInterface $router)
     {
@@ -82,7 +82,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/about", name="about", options={"sitemap" = true})
+     * @Route("/about", name="about")
      */
     public function about(Request $request, TranslatorInterface $translator)
     {
@@ -156,7 +156,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/blog", name="blog", options={"sitemap" = true})
+     * @Route("/blog", name="blog")
      */
     public function blog(Request $request, BlogPostRepository $blogPostRepository)
     {
@@ -238,7 +238,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/contribute", name="contribute", options={"sitemap" = true})
+     * @Route("/contribute", name="contribute")
      */
     public function contribute(Request $request, MarkdownParserInterface $parser, TranslatorInterface $translator)
     {
