@@ -38,5 +38,8 @@ donate_title: 'Supports the development of the StratusPHP.'
 contribute: Contribute
 project.description.stratus_php: 'PHP framework for creating single page applications.'
 new: New
+newsletter_subscription_info: 'If you want to know by email about our next publications and news in general, subscribe to our newsletter.'
+enter_your_email: 'Enter your email.'
+subscribe_me: 'Subscribe me'
 project.description.website: 'The project of this website based on Symfony.'
 project.description.http_server: 'A HTTP Server written in PHP with help of the Symfony components.'

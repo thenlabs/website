@@ -21,4 +21,31 @@
         <small><i class="far fa-clock"></i> {{ 'publication_date'|trans }}: {{ blogPost.published|date('Y-m-d') }}</small>
         <div class="fb-share-button" data-href="{{ path('blogPost', {slug: blogPost.slug}) }}" data-layout="button_count"></div>
     </p>
+
+    <div class="license" style="padding: 0; background: #FFFFFF">
+        {{ form_start(formNewsletterSubscriber, { 'attr': { 'id': 'formNewsletterSubscriber' } }) }}
+        <div class="cta-container">
+            <div class="speech-bubble">
+                <p class="intro">{{ 'newsletter_subscription_info'|trans }}</p>
+                {{ form_widget(formNewsletterSubscriber.email, { 'attr': {'placeholder': 'enter_your_email'|trans} }) }}
+                <div class="btn-container text-center" style="margin-top: 25px">
+                    {{ form_widget(formNewsletterSubscriber.submit, {'label': 'subscribe_me'|trans, 'attr': {'class': 'btn btn-cta-secondary'} }) }}
+                </div>
+            </div>
+        </div>
+        {{ form_end(formNewsletterSubscriber) }}
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var $formNewsletterSubscriber = $('#formNewsletterSubscriber');
+
+        $formNewsletterSubscriber.on('submit', function() {
+            return false;
+        });
+    });
+    </script>
 {% endblock %}
