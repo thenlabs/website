@@ -48,6 +48,16 @@ class NewsletterSubscriber
      */
     private $verified;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $email_sent;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $email_sent_log;
+
     public function __construct()
     {
         $this->created = new \DateTime;
@@ -115,6 +125,30 @@ class NewsletterSubscriber
     public function setVerified(?\DateTimeInterface $verified): self
     {
         $this->verified = $verified;
+
+        return $this;
+    }
+
+    public function getEmailSent(): ?bool
+    {
+        return $this->email_sent;
+    }
+
+    public function setEmailSent(?bool $email_sent): self
+    {
+        $this->email_sent = $email_sent;
+
+        return $this;
+    }
+
+    public function getEmailSentLog(): ?string
+    {
+        return $this->email_sent_log;
+    }
+
+    public function setEmailSentLog(?string $email_sent_log): self
+    {
+        $this->email_sent_log = $email_sent_log;
 
         return $this;
     }

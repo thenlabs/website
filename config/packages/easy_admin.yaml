@@ -54,3 +54,13 @@ easy_admin:
 
         Invoice:
             class: App\Entity\Invoice
+
+        NewsletterSubscriber:
+            class: App\Entity\NewsletterSubscriber
+            list:
+                fields:
+                    - email
+                    - language
+                    - created
+                    - verified
+                    - { property: 'email_sent', type: 'boolean' }
