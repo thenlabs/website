@@ -41,5 +41,7 @@ new: Nuevo
 newsletter_subscription_info: 'Si desea enterarse por correo electrónico sobre nuestras próximas publicaciones y novedades en general, suscríbase a nuestro boletín.'
 enter_your_email: 'Introduzca su correo electrónico.'
 subscribe_me: 'Suscribirme'
+subscriber_already_exists: 'Usted ya está suscrito a nuestra lista de correo.'
+subscription_successful: 'Gracias por suscribirse a nuestra lista de correo. Solo falta que valide su correo electrónico y para ello debe visitar el enlace que le acabamos de enviar al mismo.'
 project.description.website: 'El proyecto de este sitio web basado en Symfony.'
 project.description.http_server: 'Un servidor HTTP escrito en PHP con la ayuda de los componentes Symfony.'

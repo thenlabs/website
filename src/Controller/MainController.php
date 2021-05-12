@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\BlogPost;
 use App\Entity\Page;
+use App\Entity\NewsletterSubscriber;
 use App\Repository\BlogPostRepository;
 use App\Form\Type\NewsletterSubscriberType;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
@@ -174,13 +175,6 @@ class MainController extends AbstractController
             throw new NotFoundHttpException();
         }
 
-        $formNewsletterSubscriber = $this->createForm(NewsletterSubscriberType::class);
-        $formNewsletterSubscriber->handleRequest($request);
-
-        if ($formNewsletterSubscriber->isSubmitted() && $formNewsletterSubscriber->isValid()) {
-            throw new \Exception("Error Processing Request", 1);
-        }
-
         $parser->code_class_prefix = 'language-';
 
         $content = $parser->transformMarkdown($blogPost->getContent());
@@ -224,6 +218,11 @@ class MainController extends AbstractController
 
             $translationsMenu[] = compact('text', 'url', 'language');
         }
+
+        $formNewsletterSubscriber = $this->createForm(
+            NewsletterSubscriberType::class,
+            ['language' => $blogPost->getLanguage()]
+        );
 
         return $this->render('devAid/page-blog-post.html.twig', [
             'content' => $content,

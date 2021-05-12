@@ -41,5 +41,7 @@ new: New
 newsletter_subscription_info: 'If you want to know by email about our next publications and news in general, subscribe to our newsletter.'
 enter_your_email: 'Enter your email.'
 subscribe_me: 'Subscribe me'
+subscriber_already_exists: 'You are already subscribed to our email list.'
+subscription_successful: 'Thank you for subscribing to our mailing list. You just need to validate your email and for this you must visit the link that we just sent to it.'
 project.description.website: 'The project of this website based on Symfony.'
 project.description.http_server: 'A HTTP Server written in PHP with help of the Symfony components.'

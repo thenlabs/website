@@ -23,17 +23,17 @@
     </p>
 
     <div class="license" style="padding: 0; background: #FFFFFF">
-        {{ form_start(formNewsletterSubscriber, { 'attr': { 'id': 'formNewsletterSubscriber' } }) }}
         <div class="cta-container">
             <div class="speech-bubble">
-                <p class="intro">{{ 'newsletter_subscription_info'|trans }}</p>
-                {{ form_widget(formNewsletterSubscriber.email, { 'attr': {'placeholder': 'enter_your_email'|trans} }) }}
-                <div class="btn-container text-center" style="margin-top: 25px">
-                    {{ form_widget(formNewsletterSubscriber.submit, {'label': 'subscribe_me'|trans, 'attr': {'class': 'btn btn-cta-secondary'} }) }}
-                </div>
+                {{ form_start(formNewsletterSubscriber, { 'attr': { 'id': 'formNewsletterSubscriber' } }) }}
+                    <p class="intro info">{{ 'newsletter_subscription_info'|trans }}</p>
+                    {{ form_widget(formNewsletterSubscriber.email, { 'attr': {'placeholder': 'enter_your_email'|trans} }) }}
+                    <div class="btn-container text-center" style="margin-top: 25px">
+                        {{ form_widget(formNewsletterSubscriber.submit, {'label': 'subscribe_me'|trans, 'attr': {'class': 'btn btn-cta-secondary'} }) }}
+                    </div>
+                {{ form_end(formNewsletterSubscriber) }}
             </div>
         </div>
-        {{ form_end(formNewsletterSubscriber) }}
     </div>
 {% endblock %}
 
@@ -42,8 +42,26 @@
     <script type="text/javascript">
     $(document).ready(function() {
         var $formNewsletterSubscriber = $('#formNewsletterSubscriber');
+        var $inputEmail = $formNewsletterSubscriber.find('input[type="email"]');
+        var $button = $formNewsletterSubscriber.find('button');
+        var $info = $formNewsletterSubscriber.find('p.info');
 
         $formNewsletterSubscriber.on('submit', function() {
+            $.ajax({
+                method: 'POST',
+                url: '{{ path("ajax_register_newsletter_subscriber") }}',
+                data: $formNewsletterSubscriber.serialize(),
+                success: function(response) {
+                    $inputEmail.hide();
+                    $button.hide();
+
+                    $info.html(response.message);
+                }
+            });
+
+            $inputEmail.attr('disabled', true);
+            $button.attr('disabled', true);
+
             return false;
         });
     });
