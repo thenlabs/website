@@ -6,6 +6,7 @@ use App\Entity\BlogPost;
 use App\Entity\Page;
 use App\Entity\NewsletterSubscriber;
 use App\Repository\BlogPostRepository;
+use App\Repository\NewsletterSubscriberRepository;
 use App\Form\Type\NewsletterSubscriberType;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -20,7 +21,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Wa72\HtmlPageDom\HtmlPageCrawler;
-
+use DateTime;
 /**
  * @Route(
  *     "/{_locale}",
@@ -252,6 +253,30 @@ class MainController extends AbstractController
             'contentTitle' => $title,
             'pageTitle' => $title,
         ]);
+    }
+
+    /**
+     * @Route("/verifyEmail", name="verify_email")
+     */
+    public function verifyEmail(Request $request, TranslatorInterface $translator, NewsletterSubscriberRepository $newsletterSubscriberRepository)
+    {
+        $token = $request->query->get('token');
+
+        $newsletterSubscriber = $newsletterSubscriberRepository->findOneBy(compact('token'));
+
+        if ($newsletterSubscriber &&
+            ! $newsletterSubscriber->getVerified()
+        ) {
+            $newsletterSubscriber->setVerified(new DateTime());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newsletterSubscriber);
+            $em->flush();
+
+            return $this->render('devAid/page-email-verified.html.twig');
+        }
+
+        return $this->redirectToRoute('index');
     }
 
     private function getMenu($content)

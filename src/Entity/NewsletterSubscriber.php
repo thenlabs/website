@@ -46,7 +46,7 @@ class NewsletterSubscriber
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $validated;
+    private $verified;
 
     public function __construct()
     {
@@ -107,14 +107,14 @@ class NewsletterSubscriber
         return $this;
     }
 
-    public function getValidated(): ?\DateTimeInterface
+    public function getVerified(): ?\DateTimeInterface
     {
-        return $this->validated;
+        return $this->verified;
     }
 
-    public function setValidated(?\DateTimeInterface $validated): self
+    public function setVerified(?\DateTimeInterface $verified): self
     {
-        $this->validated = $validated;
+        $this->verified = $verified;
 
         return $this;
     }
