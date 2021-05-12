@@ -46,6 +46,6 @@ subscription_successful: 'Gracias por suscribirse a nuestra lista de correo. Sol
 email_verified: 'Correo verificado'
 email_verified_comments: 'Gracias por verificar su correo. <br> En lo adelante le informaremos de nuestros nuevos contenidos que consideremos relevantes, <br> no obstante, en todo momento usted podrá cancelar su suscripción si así lo desea.'
 verify_your_email: 'Verifique su correo'
-verify_your_email_content: 'Para completar la sucripción al boletín de correo de ThenLabs visite el siguiente enlace: <br> <br> <a href="%URL%">Verificar correo</a> <br> <br> En caso de que haya recibido este correo por error simplemente ignórelo.'
+verify_your_email_content: 'Para completar la sucripción al boletín de correo de ThenLabs visite el siguiente enlace: <br> <br> <a href="%URL%" target="_blank">Verificar correo</a> <br> <br> En caso de que haya recibido este correo por error simplemente ignórelo.'
 project.description.website: 'El proyecto de este sitio web basado en Symfony.'
 project.description.http_server: 'Un servidor HTTP escrito en PHP con la ayuda de los componentes Symfony.'
