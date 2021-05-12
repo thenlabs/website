@@ -68,11 +68,10 @@ class AjaxController extends AbstractController
                     )
                 )
                 ->html(
-                    $translator->trans(
-                        'verify_your_email_content',
-                        ['%URL%' => $this->generateUrl('verify_email', [], UrlGeneratorInterface::ABSOLUTE_URL).'?token='.$newsletterSubscriber->getToken()],
-                        null,
-                        $newsletterSubscriber->getLanguage()
+                    str_replace(
+                        '%URL%',
+                        $this->generateUrl('verify_email', [], UrlGeneratorInterface::ABSOLUTE_URL).'?token='.$newsletterSubscriber->getToken(),
+                        $translator->trans('verify_your_email_content', [], null, $newsletterSubscriber->getLanguage())
                     )
                 )
             ;
