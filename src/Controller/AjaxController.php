@@ -5,7 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Entity\NewsletterSubscriber;
 use App\Repository\NewsletterSubscriberRepository;
@@ -22,7 +25,8 @@ class AjaxController extends AbstractController
     public function registerNewsletterSubcriber(
         Request $request,
         NewsletterSubscriberRepository $newsletterSubscriberRepository,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        MailerInterface $mailer
     ): Response {
         $newsletterSubscriber = new NewsletterSubscriber();
         $formNewsletterSubscriber = $this->createForm(
@@ -50,6 +54,31 @@ class AjaxController extends AbstractController
                     ),
                 ]);
             }
+
+            // Send the email
+            $email = (new Email())
+                ->to($newsletterSubscriber->getEmail())
+                ->subject(
+                    $translator->trans(
+                        'verify_your_email',
+                        [],
+                        null,
+                        $newsletterSubscriber->getLanguage()
+                    )
+                )
+                ->html(
+                    $translator->trans(
+                        'verify_your_email_content',
+                        ['%URL%' => $this->generateUrl('verify_email', [], UrlGeneratorInterface::ABSOLUTE_URL).'?token='.$newsletterSubscriber->getToken()],
+                        null,
+                        $newsletterSubscriber->getLanguage()
+                    )
+                )
+            ;
+
+            $sentMessage = $mailer->send($email);
+
+            $newsletterSubscriber->setEmailSentLog($sentMessage->toString());
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($newsletterSubscriber);
