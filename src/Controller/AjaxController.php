@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Entity\NewsletterSubscriber;
@@ -76,9 +77,12 @@ class AjaxController extends AbstractController
                 )
             ;
 
-            $sentMessage = $mailer->send($email);
-
-            $newsletterSubscriber->setEmailSentLog($sentMessage->toString());
+            try {
+                $mailer->send($email);
+                $newsletterSubscriber->setEmailSent(true);
+            } catch (TransportExceptionInterface $e) {
+                $newsletterSubscriber->setEmailSentLog($e->getMessage());
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($newsletterSubscriber);
