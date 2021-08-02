@@ -4,12 +4,24 @@
 {% block before_content %}
     <div class="row">
         <div class="col">
+            {% include "devAid/includes/rating.html.twig" %}
+
             <div style="float: right; margin-bottom: 20px">
                 <a href="{{ url_doc }}" target="_blank">
                     <i class="far fa-edit"></i>
                     {{ 'improve_this_doc'|trans }}
                 </a>
             </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block after_content %}
+    {{ parent() }}
+
+    <div class="row">
+        <div class="col text-center">
+            {% include "devAid/includes/rating.html.twig" %}
         </div>
     </div>
 {% endblock %}

@@ -149,6 +149,7 @@ class MainController extends AbstractController
                 'menu' => $menu,
                 // 'donate' => true,
                 'url_doc' => "https://github.com/thenlabs/doc/edit/master/{$project}/{$branch}/{$locale}/{$fileInfo['filename']}.{$fileInfo['extension']}",
+                'project' => $project,
             ]);
         } else {
             return new BinaryFileResponse($filename);
