@@ -356,7 +356,7 @@ class MainController extends AbstractController
                 'description' => $translator->trans('project.description.pyramidal_tests'),
                 'url' => $router->generate(
                     'doc',
-                    ['project' => 'pyramidal-tests', 'branch' => 'master', 'resource' => 'index', 'extension' => 'html'],
+                    ['project' => 'pyramidal-tests', 'branch' => '2.0', 'resource' => 'index', 'extension' => 'html'],
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
                 'sitemap' => true,
